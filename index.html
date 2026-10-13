@@ -10,8 +10,8 @@
 *{box-sizing:border-box}
 body{margin:0;background:#060b14;color:#edf5ff;font-family:Arial,sans-serif}
 header{padding:22px 17px;background:#0b1729;border-bottom:1px solid #17477b}
-header h1{margin:0;color:#40a5ff;font-size:28px}
-header p{color:#b8cce5;font-size:13px}
+header h1{margin:0;color:#40a5ff;font-size:27px}
+header p{color:#b8cce5;font-size:12px}
 main{max-width:850px;margin:auto;padding:15px}
 .card{background:#0d192b;border:1px solid #203c5c;border-radius:14px;padding:16px;margin-bottom:15px}
 h2{font-size:19px;margin-top:0}
@@ -36,12 +36,13 @@ footer{text-align:center;color:#8da3bd;padding:20px;font-size:12px}
 <h1>LS | LIXERA STORE</h1>
 <p>TOP UP GAME • BOT WHATSAPP • APK PREMIUM • JOKI GAME</p>
 </header>
+
 <main>
 <section class="card">
 <h2>Masuk / Daftar Akun</h2>
 <input id="email" type="email" placeholder="Email aktif">
 <input id="password" type="password" placeholder="Password minimal 6 karakter">
-<input id="username" placeholder="Username (untuk daftar)">
+<input id="username" placeholder="Username untuk daftar">
 <button onclick="register()">Daftar Akun</button>
 <button class="secondary" onclick="login()">Masuk</button>
 <p id="message">Silakan daftar atau masuk untuk memesan.</p>
@@ -62,127 +63,146 @@ footer{text-align:center;color:#8da3bd;padding:20px;font-size:12px}
 <option>Jasa Website</option>
 </select>
 <div id="products" class="grid"></div>
-<p class="small">Harga di bawah adalah contoh awal. Pastikan harga dan stok dikonfirmasi admin sebelum membayar.</p>
+<p class="small">Harga katalog merupakan harga awal. Konfirmasi harga dan stok kepada admin sebelum membayar.</p>
 </section>
 
 <section class="card">
-<h2>Informasi Pemesanan</h2>
-<p class="small">Pembayaran dilakukan secara manual setelah admin mengonfirmasi produk, stok, dan total harga. Jangan mengirim pembayaran sebelum memeriksa nominal dan penerima.</p>
+<h2>Pusat Bantuan</h2>
+<p class="small">Butuh bantuan atau ingin mengonfirmasi pesanan? Hubungi admin melalui WhatsApp atau kunjungi halaman toko kami.</p>
 <button onclick="contactAdmin()">Hubungi Admin WhatsApp</button>
+<button class="secondary" onclick="openStore()">Website / Link Toko</button>
 </section>
 </main>
+
 <footer>LIXERA STORE © 2026</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://pcshfnbiyxnygqicffko.supabase.co";
-const SUPABASE_KEY = "sb_publishable_YvYHx1Q2kqKCfagFuFS6sg_HuFLLG7M";
-const ADMIN_WA = "628818238317";
+const SUPABASE_URL="https://pcshfnbiyxnygqicffko.supabase.co";
+const SUPABASE_KEY="sb_publishable_YvYHx1Q2kqKCfagFuFS6sg_HuFLLG7M";
+const ADMIN_WA="628818238317";
 
-const products = [
- {name:"Free Fire",category:"Top Up Game",price:10000},
- {name:"Mobile Legends",category:"Top Up Game",price:16000},
- {name:"Roblox",category:"Top Up Game",price:13000},
- {name:"PUBG Mobile",category:"Top Up Game",price:22000},
- {name:"Sewa Bot 7 Hari",category:"Sewa Bot WhatsApp",price:3000},
- {name:"Sewa Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:10000},
- {name:"User Premium 1 Bulan",category:"Sewa Bot WhatsApp",price:20000},
- {name:"Owner Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:50000},
- {name:"Spotify Premium",category:"APK Premium",price:5000},
- {name:"AM Premium",category:"APK Premium",price:2000},
- {name:"Wink Premium",category:"APK Premium",price:5000},
- {name:"CapCut Pro",category:"APK Premium",price:10000},
- {name:"YouTube Premium",category:"APK Premium",price:10000},
- {name:"Joki Rank Epic",category:"Joki Game",price:5000},
- {name:"Joki Rank Mythic",category:"Joki Game",price:18000},
- {name:"Jasa Bikin Website",category:"Jasa Website",price:0}
+const products=[
+{name:"Free Fire",category:"Top Up Game",price:10000},
+{name:"Mobile Legends",category:"Top Up Game",price:16000},
+{name:"Roblox",category:"Top Up Game",price:13000},
+{name:"PUBG Mobile",category:"Top Up Game",price:22000},
+{name:"Sewa Bot 7 Hari",category:"Sewa Bot WhatsApp",price:3000},
+{name:"Sewa Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:10000},
+{name:"Sewa Bot 2 Bulan",category:"Sewa Bot WhatsApp",price:20000},
+{name:"Sewa Bot 3 Bulan",category:"Sewa Bot WhatsApp",price:30000},
+{name:"User Premium 1 Bulan",category:"Sewa Bot WhatsApp",price:20000},
+{name:"Owner Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:50000},
+{name:"Spotify Premium",category:"APK Premium",price:5000},
+{name:"AM Premium",category:"APK Premium",price:2000},
+{name:"Wink Premium",category:"APK Premium",price:5000},
+{name:"CapCut Pro",category:"APK Premium",price:10000},
+{name:"YouTube Premium",category:"APK Premium",price:10000},
+{name:"Joki Rank Grandmaster",category:"Joki Game",price:3000},
+{name:"Joki Rank Epic",category:"Joki Game",price:5000},
+{name:"Joki Rank Legend",category:"Joki Game",price:7000},
+{name:"Joki Rank Mythic",category:"Joki Game",price:18000},
+{name:"Joki Rank Honor",category:"Joki Game",price:20000},
+{name:"Joki Rank Glory",category:"Joki Game",price:25000},
+{name:"Joki Rank Immortal",category:"Joki Game",price:30000},
+{name:"Jasa Bikin Website",category:"Jasa Website",price:0}
 ];
 
-let client = null;
-let currentUser = null;
+let client=null;
+let currentUser=null;
 
 function money(n){
- return n ? "Rp"+n.toLocaleString("id-ID") : "Tanya Admin";
+return n?"Rp"+n.toLocaleString("id-ID"):"Tanya Admin";
 }
 function showMessage(t){
- document.getElementById("message").textContent=t;
+document.getElementById("message").textContent=t;
 }
 function render(){
- const category=document.getElementById("category").value;
- const list=products.map((p,i)=>({...p,index:i}))
- .filter(p=>category==="Semua"||p.category===category);
- document.getElementById("products").innerHTML=list.map(p=>`
- <article class="product">
- <div class="category">${p.category}</div>
- <h3>${p.name}</h3>
- <div class="price">${money(p.price)}</div>
- <button onclick="order(${p.index})">Order</button>
- </article>`).join("");
-}
-function initSupabase(){
- if(!window.supabase){
-  showMessage("Koneksi library Supabase gagal dimuat. Periksa internet lalu muat ulang.");
-  return;
- }
- client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
- client.auth.getSession().then(({data})=>{
-  currentUser=data.session?.user||null;
-  updateAccount();
- }).catch(()=>showMessage("Gagal memeriksa sesi akun."));
- client.auth.onAuthStateChange((_event,session)=>{
-  currentUser=session?.user||null;
-  updateAccount();
- });
+const category=document.getElementById("category").value;
+const list=products.map((p,i)=>({...p,index:i}))
+.filter(p=>category==="Semua"||p.category===category);
+document.getElementById("products").innerHTML=list.map(p=>`
+<article class="product">
+<div class="category">${p.category}</div>
+<h3>${p.name}</h3>
+<div class="price">${money(p.price)}</div>
+<button onclick="order(${p.index})">Order</button>
+</article>`).join("");
 }
 function updateAccount(){
- const logged=!!currentUser;
- document.getElementById("account").classList.toggle("hidden",!logged);
- document.getElementById("accountText").textContent=
- logged?"Login sebagai: "+currentUser.email:"";
+document.getElementById("account").classList.toggle("hidden",!currentUser);
+document.getElementById("accountText").textContent=
+currentUser?"Login sebagai: "+currentUser.email:"";
+}
+function initSupabase(){
+if(!window.supabase){
+showMessage("Library Supabase gagal dimuat. Periksa koneksi internet lalu muat ulang.");
+return;
+}
+client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+client.auth.getSession().then(({data,error})=>{
+if(error)showMessage(error.message);
+currentUser=data?.session?.user||null;
+updateAccount();
+}).catch(()=>showMessage("Gagal memeriksa sesi akun."));
+client.auth.onAuthStateChange((_event,session)=>{
+currentUser=session?.user||null;
+updateAccount();
+});
 }
 async function register(){
- if(!client)return showMessage("Supabase belum tersambung.");
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
- const username=document.getElementById("username").value.trim();
- if(!email||password.length<6||!username)
-  return showMessage("Isi email, username, dan password minimal 6 karakter.");
- const {error}=await client.auth.signUp({
-  email,password,
-  options:{data:{username:username,full_name:username}}
- });
- showMessage(error?error.message:"Pendaftaran dikirim. Periksa email jika verifikasi diminta.");
+if(!client)return showMessage("Supabase belum tersambung.");
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+const username=document.getElementById("username").value.trim();
+if(!email||password.length<6||!username)
+return showMessage("Isi email, username, dan password minimal 6 karakter.");
+const {data,error}=await client.auth.signUp({
+email,password,
+options:{data:{username,full_name:username}}
+});
+if(error)return showMessage("Pendaftaran gagal: "+error.message);
+showMessage(data.user?.identities?.length===0
+?"Email ini mungkin sudah terdaftar. Coba masuk."
+:"Pendaftaran dikirim. Periksa email jika verifikasi diperlukan.");
 }
 async function login(){
- if(!client)return showMessage("Supabase belum tersambung.");
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
- const {error}=await client.auth.signInWithPassword({email,password});
- showMessage(error?error.message:"Login berhasil.");
+if(!client)return showMessage("Supabase belum tersambung.");
+const email=document.getElementById("email").value.trim();
+const password=document.getElementById("password").value;
+if(!email||!password)return showMessage("Isi email dan password.");
+const {error}=await client.auth.signInWithPassword({email,password});
+showMessage(error?"Login gagal: "+error.message:"Login berhasil.");
 }
 async function logout(){
- if(!client)return;
- const {error}=await client.auth.signOut();
- if(error)return showMessage(error.message);
- showMessage("Berhasil keluar dari akun.");
+if(!client)return;
+const {error}=await client.auth.signOut();
+if(error)return showMessage(error.message);
+currentUser=null;
+updateAccount();
+showMessage("Berhasil keluar dari akun.");
 }
 function order(i){
- if(!currentUser){
-  showMessage("Daftar atau masuk dulu sebelum order.");
-  document.getElementById("email").focus();
-  window.scrollTo({top:0,behavior:"smooth"});
-  return;
- }
- const p=products[i];
- const text="Halo Admin LIXERA STORE, saya ingin order:\n"+
- "Produk: "+p.name+"\nKategori: "+p.category+
- "\nHarga contoh: "+money(p.price)+
- "\nEmail akun: "+currentUser.email+
- "\nMohon konfirmasi harga final dan stok sebelum pembayaran.";
- window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(text),"_blank");
+if(!currentUser){
+showMessage("Daftar atau masuk dulu sebelum memesan.");
+window.scrollTo({top:0,behavior:"smooth"});
+return;
+}
+const p=products[i];
+const text=`Halo Admin LIXERA STORE, saya ingin order:
+Produk: ${p.name}
+Kategori: ${p.category}
+Harga katalog: ${money(p.price)}
+Email akun: ${currentUser.email}
+Mohon konfirmasi harga final dan stok sebelum pembayaran.`;
+window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(text),"_blank");
 }
 function contactAdmin(){
- const text="Halo Admin LIXERA STORE, saya ingin bertanya tentang produk dan pemesanan.";
- window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(text),"_blank");
+const text="Halo Admin LIXERA STORE, saya ingin bertanya tentang produk dan pemesanan.";
+window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(text),"_blank");
+}
+function openStore(){
+window.open("https://lynk.id/lixerastore","_blank");
 }
 render();
 initSupabase();
