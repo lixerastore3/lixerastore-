@@ -1,148 +1,200 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
 <title>LIXERA STORE</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--bg:#07111f;--panel:#101f34;--blue:#168cff;--cyan:#39d5ff;--text:#f4f8ff;--muted:#9db0c9;--line:#243750}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}header{background:#0b1729;border-bottom:1px solid var(--line);padding:16px;position:sticky;top:0;z-index:5}h1{margin:0;color:var(--cyan);font-size:24px}header small{color:var(--muted)}nav{display:flex;gap:8px;overflow:auto;margin-top:14px}button,.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:11px 13px;font-weight:bold;cursor:pointer}nav button{white-space:nowrap;background:#182b44}.wrap{max-width:1050px;margin:auto;padding:16px}.hero,.panel,.product{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:17px;margin-bottom:14px}.hero{background:linear-gradient(130deg,#102b50,#101f34)}.hero h2{font-size:27px;margin:4px 0 10px}.muted{color:var(--muted);font-size:14px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.tabs button{background:#182b44}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.product h3{margin:0 0 8px}.price{color:var(--cyan);font-size:20px;font-weight:bold;margin:12px 0}.product button{width:100%}input,select,textarea{width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--line);border-radius:9px;background:#07111f;color:white}label{font-size:14px;color:#cfdbeb}h2,h3{margin-top:0}.hide{display:none}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.row:last-child{border:0}.danger{background:#a72b42}.green{color:#63efb2}.notice{border:1px solid #526c8d;padding:12px;border-radius:10px;color:#c8d9ef;font-size:13px;margin-top:12px}footer{text-align:center;color:var(--muted);padding:25px;font-size:13px}.full{width:100%}
+*{box-sizing:border-box}
+body{margin:0;background:#060b14;color:#eef5ff;font-family:Arial,sans-serif}
+header{padding:22px 16px;background:#0a1628;border-bottom:1px solid #17345b}
+h1{margin:0;color:#45a6ff;font-size:27px}
+header p{margin:7px 0 0;color:#a9bed8}
+main{max-width:850px;margin:auto;padding:16px}
+.panel{background:#0c1728;border:1px solid #1c3555;border-radius:15px;padding:16px;margin-bottom:16px}
+h2{font-size:18px;margin-top:0}
+input,select,button{width:100%;padding:12px;margin:6px 0;border-radius:9px;font-size:15px}
+input,select{background:#07111f;color:white;border:1px solid #294565}
+button{border:0;background:#1688ed;color:white;font-weight:bold;cursor:pointer}
+button.secondary{background:#20334d}
+.small{font-size:13px;color:#a9bed8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.product{background:#101f34;border:1px solid #254362;border-radius:12px;padding:13px}
+.price{color:#50b1ff;font-size:19px;font-weight:bold}
+.tag{font-size:12px;color:#9fcfff}
+#notice{padding:10px;border-radius:8px;margin:8px 0;white-space:pre-wrap}
+.hidden{display:none}
+footer{text-align:center;padding:22px;color:#8196b0;font-size:12px}
 </style>
 </head>
 <body>
 <header>
-  <h1>⚡ LIXERA STORE</h1>
-  <small>Top Up • Joki • APK Premium • Sewa Bot</small>
-  <nav>
-    <button onclick="show('home')">Beranda</button>
-    <button onclick="show('products')">Produk</button>
-    <button onclick="show('cart')">Keranjang (<span id="cartCount">0</span>)</button>
-    <button onclick="show('account')">Akun</button>
-    <button onclick="show('orders')">Pesanan</button>
-    <button onclick="show('admin')">Dashboard</button>
-  </nav>
+  <h1>LS / LIXERA STORE</h1>
+  <p>Top Up Game • Bot WhatsApp • APK Premium • Joki Game</p>
 </header>
-<main class="wrap">
-<section id="home">
- <div class="hero">
-  <h2>Welcome to LIXERA STORE</h2>
-  <p>Tempat order kebutuhan game dan digital favorit lu.</p>
-  <button onclick="show('products')">Lihat Produk →</button>
- </div>
- <div class="grid">
-  <div class="panel"><h3>🎮 Top Up Game</h3><p class="muted">Free Fire, Mobile Legends, Roblox, PUBG.</p></div>
-  <div class="panel"><h3>🏆 Joki Game</h3><p class="muted">Pilih rank dan layanan yang tersedia.</p></div>
-  <div class="panel"><h3>💎 APK Premium</h3><p class="muted">Spotify, AM, Wink, CapCut, YouTube.</p></div>
-  <div class="panel"><h3>🤖 Sewa Bot</h3><p class="muted">Pilih paket bot sesuai kebutuhan.</p></div>
- </div>
- <div class="notice">Penting: ini versi awal/demo. Data akun dan pesanan disimpan di browser perangkat ini, bukan database online.</div>
-</section>
 
-<section id="products" class="hide">
- <h2>Daftar Produk</h2>
- <div class="tabs">
-  <button onclick="render('Semua')">Semua</button>
-  <button onclick="render('Top Up Game')">Top Up Game</button>
-  <button onclick="render('Joki Game')">Joki Game</button>
-  <button onclick="render('Joki Gendong')">Joki Gendong</button>
-  <button onclick="render('APK Premium')">APK Premium</button>
-  <button onclick="render('Sewa Bot')">Sewa Bot</button>
- </div>
- <div id="productGrid" class="grid"></div>
-</section>
+<main>
+  <section class="panel" id="authPanel">
+    <h2>Masuk / Buat Akun</h2>
+    <input id="email" type="email" placeholder="Email aktif">
+    <input id="password" type="password" placeholder="Password (minimal 6 karakter)">
+    <input id="username" placeholder="Username (untuk daftar)">
+    <button onclick="signup()">Daftar Akun</button>
+    <button class="secondary" onclick="login()">Masuk</button>
+    <div id="notice" class="small">Daftar atau masuk untuk mulai order.</div>
+  </section>
 
-<section id="cart" class="hide">
- <div class="panel"><h2>🛒 Keranjang</h2><div id="cartItems"></div><h3 id="total">Total: Rp0</h3>
- <label>Metode pembayaran</label>
- <select id="payment"><option>DANA</option><option>GoPay</option><option>QRIS</option></select>
- <div id="paymentInfo" class="notice"></div>
- <label>Catatan / ID game / server (jika perlu)</label><textarea id="details" placeholder="Contoh: ID game, server, paket yang dipilih..."></textarea>
- <button class="full" onclick="checkout()">Order lewat WhatsApp</button>
- <p class="muted">Pembayaran dikonfirmasi admin secara manual. Jangan mengirim data sensitif akun game.</p>
- </div>
-</section>
+  <section class="panel hidden" id="accountPanel">
+    <h2>Akun Saya</h2>
+    <div id="who"></div>
+    <button class="secondary" onclick="logout()">Keluar</button>
+  </section>
 
-<section id="account" class="hide">
- <div class="panel"><h2>👤 Akun</h2><div id="accountStatus" class="muted"></div>
- <div id="authForm">
- <h3>Daftar / Masuk demo</h3>
- <label>Nama pengguna</label><input id="username" placeholder="Nama pengguna">
- <label>Email (opsional)</label><input id="email" type="email" placeholder="email@example.com">
- <button onclick="login()">Masuk / Daftar</button>
- <p class="muted">Demo ini tidak memverifikasi email dan bukan sistem akun yang aman.</p>
- </div>
- <button id="logoutBtn" class="danger hide" onclick="logout()">Keluar akun demo</button>
- </div>
-</section>
+  <section class="panel">
+    <h2>Kategori</h2>
+    <select id="category" onchange="renderProducts()">
+      <option value="Semua">Semua kategori</option>
+      <option>Top Up Game</option>
+      <option>Sewa Bot WhatsApp</option>
+      <option>APK Premium</option>
+      <option>Joki Game</option>
+      <option>Jasa Website</option>
+    </select>
+    <div id="products" class="grid"></div>
+    <p class="small">Harga dan ketersediaan produk perlu dikonfirmasi admin sebelum pembayaran.</p>
+  </section>
 
-<section id="orders" class="hide">
- <div class="panel"><h2>📦 Riwayat Pesanan</h2><div id="orderList"></div><p class="muted">Riwayat hanya terlihat di browser/perangkat ini.</p></div>
-</section>
-
-<section id="admin" class="hide">
- <div class="panel"><h2>🛠 Dashboard Demo</h2>
- <p class="muted">Panel lokal untuk melihat pesanan demo di browser ini. Belum ada login admin aman atau sinkronisasi ke server.</p>
- <div id="adminOrders"></div>
- <button class="danger" onclick="clearOrders()">Hapus riwayat lokal</button>
- </div>
- <div class="panel"><h3>Tambah produk sementara</h3>
- <label>Nama produk</label><input id="newName" placeholder="Nama produk">
- <label>Kategori</label><select id="newCategory"><option>APK Premium</option><option>Top Up Game</option><option>Joki Game</option><option>Joki Gendong</option><option>Sewa Bot</option></select>
- <label>Harga (angka saja)</label><input id="newPrice" type="number" min="0" placeholder="Contoh: 10000">
- <button onclick="addProduct()">Tambah produk</button>
- </div>
-</section>
+  <section class="panel">
+    <h2>Alur Pemesanan</h2>
+    <p class="small">Pilih produk, tekan Order WhatsApp, lalu ikuti instruksi admin. Pembayaran masih manual. Jangan mengirim uang sebelum memeriksa nama penerima dan nominal.</p>
+    <button onclick="contactAdmin()">Hubungi Admin LIXERA STORE</button>
+  </section>
 </main>
-<footer>© LIXERA STORE • Order dan konfirmasi melalui admin</footer>
+<footer>LIXERA STORE © 2026</footer>
 
 <script>
-const adminWA="628818238317";
-const rupiah=n=>"Rp"+Number(n||0).toLocaleString("id-ID");
-const baseProducts=[
-["Spotify Premium 1 Bulan","APK Premium",5000],
-["AM Premium 1 Tahun","APK Premium",5000],
-["Wink Premium","APK Premium",5000],
-["CapCut Pro","APK Premium",10000],
-["YouTube Premium","APK Premium",10000],
-["Free Fire — pilih nominal via admin","Top Up Game",0],
-["Mobile Legends — pilih nominal via admin","Top Up Game",0],
-["Roblox — pilih nominal via admin","Top Up Game",0],
-["PUBG — pilih nominal via admin","Top Up Game",0],
-["Grandmaster","Joki Game",3000],
-["Epic","Joki Game",5000],
-["Legend","Joki Game",7000],
-["Mythic","Joki Game",18000],
-["Honor","Joki Game",20000],
-["Glory","Joki Game",28000],
-["Immortal","Joki Game",30000],
-["Grading","Joki Game",235000],
-["Epic","Joki Gendong",3000],
-["Legend","Joki Gendong",5000],
-["Mythic","Joki Gendong",7000],
-["Honor","Joki Gendong",10000],
-["Glory","Joki Gendong",15000],
-["IMO","Joki Gendong",20000],
-["Grading","Joki Gendong",200000],
-["Sewa Bot 7 Hari","Sewa Bot",3000],
-["Sewa Bot 1 Bulan","Sewa Bot",10000],
-["Sewa Bot 2 Bulan — hubungi admin","Sewa Bot",0],
-["Premium Bot 1 Bulan","Sewa Bot",30000],
-["Owner Bot 1 Bulan","Sewa Bot",50000]
+const SUPABASE_URL = "https://pcshfnbiyxnygqicffko.supabase.co";
+const SUPABASE_KEY = "sb_publishable_YvYHx1Q2kqKCfagFuFS6sg_HuFLLG7M";
+const WA_ADMIN = "628818238317";
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const products = [
+ {name:"Top Up Free Fire",category:"Top Up Game",price:10000},
+ {name:"Top Up Mobile Legends",category:"Top Up Game",price:16000},
+ {name:"Top Up Roblox",category:"Top Up Game",price:13000},
+ {name:"Top Up PUBG Mobile",category:"Top Up Game",price:22000},
+ {name:"Sewa Bot 7 Hari",category:"Sewa Bot WhatsApp",price:3000},
+ {name:"Sewa Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:10000},
+ {name:"User Premium Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:20000},
+ {name:"Owner Bot 1 Bulan",category:"Sewa Bot WhatsApp",price:50000},
+ {name:"Spotify Premium 1 Bulan",category:"APK Premium",price:5000},
+ {name:"AM Premium 1 Tahun",category:"APK Premium",price:2000},
+ {name:"Wink Premium",category:"APK Premium",price:5000},
+ {name:"CapCut Pro",category:"APK Premium",price:10000},
+ {name:"YouTube Premium",category:"APK Premium",price:10000},
+ {name:"Joki Rank Epic",category:"Joki Game",price:5000},
+ {name:"Joki Rank Mythic",category:"Joki Game",price:18000},
+ {name:"Jasa Bikin Website",category:"Jasa Website",price:0}
 ];
-let products=JSON.parse(localStorage.getItem("lx_products")||"null")||baseProducts.map((p,i)=>({id:i+1,name:p[0],cat:p[1],price:p[2]}));
-let cart=JSON.parse(localStorage.getItem("lx_cart")||"[]");
-let orders=JSON.parse(localStorage.getItem("lx_orders")||"[]");
-let user=localStorage.getItem("lx_user")||"";
-function save(){localStorage.setItem("lx_products",JSON.stringify(products));localStorage.setItem("lx_cart",JSON.stringify(cart));localStorage.setItem("lx_orders",JSON.stringify(orders));}
-function show(id){document.querySelectorAll("main section").forEach(s=>s.classList.add("hide"));document.getElementById(id).classList.remove("hide");if(id==="cart")drawCart();if(id==="account")drawAccount();if(id==="orders")drawOrders();if(id==="admin")drawAdmin();if(id==="products")render("Semua");window.scrollTo(0,0)}
-function render(cat){const grid=document.getElementById("productGrid");const list=cat==="Semua"?products:products.filter(p=>p.cat===cat);grid.innerHTML=list.map(p=>`<div class="product"><h3>${esc(p.name)}</h3><div class="muted">${esc(p.cat)}</div><div class="price">${p.price>0?rupiah(p.price):"Konfirmasi harga admin"}</div><button onclick="addCart(${p.id})">Tambah ke keranjang</button></div>`).join("")||"<p>Belum ada produk.</p>"}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function addCart(id){const p=products.find(x=>x.id===id);if(!p)return;cart.push({...p,key:Date.now()+Math.random()});save();document.getElementById("cartCount").textContent=cart.length;alert("Produk ditambahkan ke keranjang.");}
-function drawCart(){document.getElementById("cartCount").textContent=cart.length;document.getElementById("cartItems").innerHTML=cart.map((p,i)=>`<div class="row"><div><b>${esc(p.name)}</b><div class="muted">${p.price?rupiah(p.price):"Harga konfirmasi admin"}</div></div><button class="danger" onclick="removeCart(${i})">Hapus</button></div>`).join("")||"<p class='muted'>Keranjang masih kosong.</p>";document.getElementById("total").textContent="Total: "+rupiah(cart.reduce((s,p)=>s+p.price,0))+(cart.some(p=>!p.price)?" + produk yang perlu konfirmasi harga":"");paymentInfo()}
-function removeCart(i){cart.splice(i,1);save();drawCart()}
-function paymentInfo(){const m=document.getElementById("payment").value;document.getElementById("paymentInfo").textContent=m==="DANA"?"DANA: 083165700636":m==="GoPay"?"GoPay: 083165700636":"QRIS: minta gambar QRIS resmi kepada admin sebelum membayar."}
-document.getElementById("payment").addEventListener("change",paymentInfo);
+
+let currentUser = null;
+
+function rupiah(n){
+ return n === 0 ? "Tanya Admin" :
+ "Rp" + Number(n).toLocaleString("id-ID");
+}
+
+function renderProducts(){
+ const category = document.getElementById("category").value;
+ const list = products.filter(p => category === "Semua" || p.category === category);
+ document.getElementById("products").innerHTML = list.map((p,i) => `
+  <article class="product">
+   <div class="tag">${p.category}</div>
+   <h3>${p.name}</h3>
+   <div class="price">${rupiah(p.price)}</div>
+   <button onclick="orderProduct(${products.indexOf(p)})">Order WhatsApp</button>
+  </article>`).join("");
+}
+
+function msg(text){
+ document.getElementById("notice").textContent = text;
+}
+
+async function signup(){
+ const email = document.getElementById("email").value.trim();
+ const password = document.getElementById("password").value;
+ const username = document.getElementById("username").value.trim();
+
+ if(!email || password.length < 6 || !username){
+  msg("Isi email, username, dan password minimal 6 karakter.");
+  return;
+ }
+
+ const {error} = await db.auth.signUp({
+  email,password,
+  options:{data:{username,full_name:username}}
+ });
+ if(error){msg(error.message);return;}
+ msg("Pendaftaran dikirim. Periksa email untuk verifikasi jika diminta, lalu masuk.");
+}
+
+async function login(){
+ const email = document.getElementById("email").value.trim();
+ const password = document.getElementById("password").value;
+ const {data,error} = await db.auth.signInWithPassword({email,password});
+ if(error){msg(error.message);return;}
+ currentUser = data.user;
+ showAccount();
+ msg("Berhasil masuk.");
+}
+
+async function logout(){
+ await db.auth.signOut();
+ currentUser = null;
+ showAccount();
+ msg("Lu sudah keluar dari akun.");
+}
+
+function showAccount(){
+ const loggedIn = !!currentUser;
+ document.getElementById("authPanel").classList.toggle("hidden",loggedIn);
+ document.getElementById("accountPanel").classList.toggle("hidden",!loggedIn);
+ document.getElementById("who").textContent =
+  loggedIn ? "Masuk sebagai " + currentUser.email : "";
+}
+
+function orderProduct(index){
+ if(!currentUser){
+  msg("Masuk atau daftar dulu sebelum order.");
+  document.getElementById("authPanel").scrollIntoView({behavior:"smooth"});
+  return;
+ }
+ const p = products[index];
+ const text = `Halo Admin LIXERA STORE, saya ingin order:\nProduk: ${p.name}\nKategori: ${p.category}\nHarga tertera: ${rupiah(p.price)}\nEmail akun: ${currentUser.email}\nMohon konfirmasi stok dan total pembayaran.`;
+ window.open("https://wa.me/" + WA_ADMIN + "?text=" + encodeURIComponent(text),"_blank");
+}
+
+function contactAdmin(){
+ const text = "Halo Admin LIXERA STORE, saya ingin bertanya tentang produk dan pemesanan.";
+ window.open("https://wa.me/" + WA_ADMIN + "?text=" + encodeURIComponent(text),"_blank");
+}
+
+db.auth.getSession().then(({data})=>{
+ currentUser = data.session?.user || null;
+ showAccount();
+});
+db.auth.onAuthStateChange((_event,session)=>{
+ currentUser = session?.user || null;
+ showAccount();
+});
+
+renderProducts();
+</script>
+</body>
+</html>aymentInfo);
 function login(){const n=document.getElementById("username").value.trim();if(!n){alert("Isi nama pengguna dulu.");return}user=n;localStorage.setItem("lx_user",user);drawAccount();alert("Akun demo aktif. Ini belum akun aman untuk website publik.")}
 function logout(){user="";localStorage.removeItem("lx_user");drawAccount()}
 function drawAccount(){document.getElementById("accountStatus").textContent=user?"Login sebagai: "+user:"Lu belum masuk.";document.getElementById("authForm").classList.toggle("hide",!!user);document.getElementById("logoutBtn").classList.toggle("hide",!user)}
