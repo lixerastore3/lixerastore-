@@ -3,436 +3,286 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#030916">
-<title>LIXERA STORE — WhatsApp Bot</title>
-<meta name="description" content="LIXERA STORE menyediakan sewa bot WhatsApp, User Premium, dan Owner Bot.">
+<title>LIXERA STORE — Bot WhatsApp</title>
 <style>
-:root {
-  --bg:#030916;
-  --panel:#07172b;
-  --cyan:#00e5ff;
-  --blue:#087bff;
-  --text:#eefaff;
-  --muted:#91aec7;
-  --line:rgba(0,213,255,.25);
-}
+:root{--bg:#030916;--panel:#08192e;--cyan:#00e5ff;--blue:#087bff;--text:#eefaff;--muted:#9bb5cb;--line:#164667}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:
-  radial-gradient(ellipse at 15% 10%,#06284a 0,transparent 36%),
-  radial-gradient(ellipse at 90% 35%,#071e40 0,transparent 35%),var(--bg);
-  color:var(--text);font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background-image:linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);
-  background-size:34px 34px
-}
-a{color:inherit;text-decoration:none}
-button,input{font:inherit}
-button{cursor:pointer}
-.topline{height:3px;background:linear-gradient(90deg,transparent,var(--cyan),#176bff,transparent)}
-header{
-  position:sticky;top:0;z-index:20;background:rgba(3,9,22,.88);
-  backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
-}
-.nav{
-  max-width:1120px;margin:auto;padding:14px 20px;display:flex;
-  align-items:center;justify-content:space-between;gap:15px
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;letter-spacing:.5px}
-.logo{
-  width:43px;height:43px;display:grid;place-items:center;border-radius:13px;
-  border:1px solid var(--cyan);color:var(--cyan);font-size:19px;font-weight:900;
-  background:linear-gradient(145deg,#0a3b61,#030916);
-  box-shadow:0 0 18px #00cfff55,inset 0 0 15px #00cfff22
-}
-.brand span{color:var(--cyan)}
-.navlinks{display:flex;align-items:center;gap:20px;color:#b6cce0;font-size:13px}
-.navlinks a:hover{color:var(--cyan)}
-.music-small{
-  border:1px solid var(--line);background:#07172b;color:var(--cyan);
-  border-radius:20px;padding:9px 12px;font-size:12px
-}
-.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
-.hero{
-  position:relative;overflow:hidden;margin:27px auto 22px;min-height:330px;
-  border:1px solid #0879b9;border-radius:25px;
-  background:
-  radial-gradient(ellipse at 75% 42%,#075aa7 0,transparent 34%),
-  radial-gradient(ellipse at 95% 0%,#063f72 0,transparent 45%),
-  linear-gradient(120deg,#071326,#04152c 60%,#061c3b);
-  box-shadow:0 0 35px #007fff16,inset 0 0 40px #008dff0d;
-  display:flex;align-items:center;padding:38px
-}
-.hero:before{
-  content:"";position:absolute;right:-35px;top:-70px;width:390px;height:390px;
-  border:1px solid #00d9ff55;border-radius:50%;
-  box-shadow:0 0 0 25px #00cfff08,0 0 0 55px #00cfff06,0 0 50px #008cff20;
-  animation:orbit 18s linear infinite
-}
-.hero:after{
-  content:"";position:absolute;right:45px;top:52px;width:210px;height:210px;
-  border:1px solid #00d9ff66;border-radius:35%;
-  transform:rotate(35deg);box-shadow:0 0 28px #00cfff24,inset 0 0 30px #007cff18;
-  animation:float 5s ease-in-out infinite
-}
-.hero-content{position:relative;z-index:2;max-width:570px}
-.eyebrow{font-size:11px;letter-spacing:3px;color:var(--cyan);font-weight:bold}
-h1{font-size:clamp(32px,5vw,53px);line-height:1.08;margin:17px 0}
-h1 span{color:var(--cyan);text-shadow:0 0 25px #00d9ff66}
-.hero p{max-width:490px;color:#b2cce0;line-height:1.8;font-size:14px}
-.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:23px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 18px;border-radius:12px;border:1px solid var(--cyan);
-  font-size:13px;font-weight:bold;transition:.25s
-}
-.btn-primary{background:linear-gradient(100deg,#00bde9,#087bff);color:#001323;
-  box-shadow:0 0 22px #00cfff38}
-.btn-secondary{background:#07182c;color:var(--cyan)}
-.btn:hover{transform:translateY(-3px);box-shadow:0 0 26px #00cfff65}
-.hero-art{
-  position:absolute;right:5%;top:50%;transform:translateY(-50%);
-  width:270px;height:250px;display:grid;place-items:center;z-index:1
-}
-.core{
-  width:155px;height:155px;border-radius:36px;transform:rotate(45deg);
-  display:grid;place-items:center;border:2px solid #00dfff;
-  background:linear-gradient(135deg,#0b5a8a,#06142c 65%);
-  box-shadow:0 0 35px #00dfff66,inset 0 0 35px #007bff40;
-  animation:float 4s ease-in-out infinite
-}
-.core span{transform:rotate(-45deg);font-size:63px;filter:drop-shadow(0 0 15px #00cfff)}
-.orb{position:absolute;width:220px;height:220px;border:1px dashed #00dfff77;border-radius:50%;animation:orbit 16s linear infinite}
-.orb:before,.orb:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
-.orb:before{top:20px;left:28px}.orb:after{right:10px;bottom:45px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 48px}
-.stat{
-  padding:17px;border:1px solid var(--line);border-radius:14px;
-  background:linear-gradient(120deg,#07192c,#061123);text-align:center
-}
-.stat b{display:block;color:var(--cyan);font-size:19px;margin-bottom:5px}
-.stat small{color:var(--muted);font-size:11px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:18px}
+body{margin:0;background:radial-gradient(ellipse at 10% 5%,#082a4b,transparent 36%),radial-gradient(ellipse at 90% 30%,#071d3e,transparent 35%),var(--bg);color:var(--text);font-family:Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#00cfff08 1px,transparent 1px),linear-gradient(90deg,#00cfff08 1px,transparent 1px);background-size:32px 32px}
+a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:10;background:#030916eF;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+.logo{width:42px;height:42px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);background:linear-gradient(140deg,#0c4267,#030916);box-shadow:0 0 18px #00dfff30}
+.brand span{color:var(--cyan)}.navlinks{display:flex;gap:18px;font-size:13px;color:var(--muted)}
+button,.btn{transition:.2s}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--cyan);padding:12px 16px;border-radius:11px;font-weight:bold;font-size:13px}
+.primary{background:linear-gradient(100deg,#00cce9,#087bff);color:#001323;box-shadow:0 0 18px #00cfff30}
+.secondary{background:#07172b;color:var(--cyan)}.btn:hover,button:hover{filter:brightness(1.15)}
+.wrap{width:min(1100px,calc(100% - 30px));margin:auto}
+.hero{position:relative;overflow:hidden;margin:25px auto 20px;padding:35px;border:1px solid #0879b9;border-radius:23px;min-height:320px;background:radial-gradient(ellipse at 78% 50%,#075da4,transparent 35%),linear-gradient(120deg,#071326,#04152b 65%,#061c3b);box-shadow:0 0 32px #008cff18}
+.hero:after{content:"";position:absolute;right:5%;top:10%;width:210px;height:210px;border:1px solid #00dfff88;border-radius:40%;transform:rotate(35deg);box-shadow:0 0 0 24px #00cfff08,0 0 0 48px #00cfff06;animation:orbit 20s linear infinite}
+.hero-content{position:relative;z-index:2;max-width:590px}
 .kicker{font-size:10px;letter-spacing:2.5px;color:var(--cyan);font-weight:bold}
-h2{font-size:clamp(24px,4vw,33px);margin:9px 0}
-.section-head p{color:var(--muted);font-size:13px;margin:0;line-height:1.6}
-.catalog{padding-bottom:35px}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin:17px 0}
+h1 span{color:var(--cyan);text-shadow:0 0 20px #00dfff55}
+.hero p,.muted{color:var(--muted);font-size:13px;line-height:1.8}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 45px}
+.stat,.why-item{padding:16px;border:1px solid var(--line);border-radius:13px;background:#07172b}
+.stat{text-align:center}.stat b{display:block;color:var(--cyan);margin-bottom:5px}.stat small{font-size:11px;color:var(--muted)}
+.heading{margin-bottom:20px}.heading h2{font-size:29px;margin:9px 0}.heading p{font-size:13px;color:var(--muted)}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.search{
-  flex:1;min-width:180px;padding:12px 14px;background:#061326;
-  border:1px solid var(--line);border-radius:11px;color:white;outline:none
-}
-.search:focus{border-color:var(--cyan);box-shadow:0 0 15px #00cfff22}
-.filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{
-  border:1px solid #164b70;background:#07172a;color:#9ebbd1;
-  border-radius:10px;padding:11px 13px;font-size:12px;transition:.2s
-}
-.filter.active,.filter:hover{background:#00cbea;color:#001321;border-color:var(--cyan);font-weight:bold;box-shadow:0 0 18px #00dfff30}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.card{
-  position:relative;overflow:hidden;padding:21px;border-radius:17px;
-  border:1px solid #12486d;background:linear-gradient(145deg,#0a1c32,#050e1e 75%);
-  transition:.3s
-}
-.card:before{content:"";position:absolute;top:0;left:-100%;width:70%;height:1px;background:var(--cyan);box-shadow:0 0 15px var(--cyan);transition:.5s}
-.card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 10px 30px #00aaff15,0 0 15px #00dfff18}
-.card:hover:before{left:130%}
-.card-top{display:flex;align-items:center;gap:13px;margin-bottom:15px}
-.product-icon{
-  width:53px;height:53px;flex-shrink:0;display:grid;place-items:center;
-  border-radius:14px;border:1px solid #008cc0;background:#052744;
-  color:var(--cyan);font-size:27px;box-shadow:inset 0 0 18px #00cfff16
-}
-.tag{font-size:10px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase}
-.card h3{font-size:16px;margin:5px 0}
-.card p{font-size:12px;line-height:1.7;color:var(--muted);min-height:39px;margin:10px 0 15px}
-.price{font-size:23px;font-weight:900;color:var(--cyan);margin:13px 0 4px}
-.period{font-size:11px;color:var(--muted)}
-.order{width:100%;margin-top:17px;border:1px solid #087fba;border-radius:10px;padding:12px;background:linear-gradient(90deg,#063d65,#071a31);color:#d9faff;font-size:12px;font-weight:bold}
-.order:hover{background:linear-gradient(90deg,#00bce9,#087bff);color:#001322;box-shadow:0 0 18px #00cfff33}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line);border-radius:14px}
-.promo{
-  position:relative;overflow:hidden;margin:8px 0 45px;padding:25px;
-  border-radius:18px;border:1px solid #0879b9;
-  background:radial-gradient(ellipse at 90% 20%,#06477d,transparent 45%),linear-gradient(100deg,#06182c,#041022)
-}
-.promo h3{color:var(--cyan);font-size:21px;margin:0 0 8px}
-.promo p{font-size:13px;color:#adc8dc;line-height:1.7;margin:0 0 15px}
-.why{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:45px}
-.why-item{border:1px solid var(--line);border-radius:13px;padding:16px;background:#061326}
-.why-item b{display:block;color:var(--cyan);font-size:13px;margin-bottom:7px}
-.why-item span{font-size:11px;color:var(--muted);line-height:1.6}
-footer{border-top:1px solid var(--line);background:#030916;padding:25px 0}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.foot small{font-size:11px;color:var(--muted);line-height:1.8}
-.foot strong{color:var(--cyan)}
-.float-wa{
-  position:fixed;right:17px;bottom:17px;z-index:25;width:54px;height:54px;
-  display:grid;place-items:center;border-radius:50%;font-size:25px;
-  background:#08c878;color:#001e17;box-shadow:0 0 25px #08c87866;
-  animation:pulse 2.4s infinite
-}
-.music-panel{
-  position:fixed;left:14px;bottom:14px;z-index:25;display:flex;align-items:center;gap:9px;
-  padding:9px 12px;border:1px solid var(--line);border-radius:30px;
-  background:rgba(4,17,34,.94);backdrop-filter:blur(10px);box-shadow:0 0 20px #00cfff16
-}
-.music-btn{border:0;border-radius:50%;width:34px;height:34px;background:#00cfea;color:#001522;font-weight:bold}
-.music-panel small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.music-panel b{font-size:11px}
-@keyframes orbit{to{transform:rotate(360deg)}}
-@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
-@keyframes pulse{0%,100%{box-shadow:0 0 12px #08c87855}50%{box-shadow:0 0 28px #08c878aa}}
-@media(max-width:760px){
- .nav{padding:11px 15px}.navlinks{gap:10px}.navlinks a{display:none}
- .brand{font-size:16px}.logo{width:38px;height:38px}
- .hero{padding:27px 22px;min-height:350px}
- .hero-content{max-width:100%}.hero-art{right:-90px;top:34%;opacity:.26;transform:scale(.75)}
- .hero-content p{max-width:380px}.stats{gap:7px;margin-bottom:40px}
- .stat{padding:14px 5px}.stat b{font-size:16px}.stat small{font-size:9px}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .card{padding:14px}.card-top{align-items:flex-start;gap:9px}.product-icon{width:42px;height:42px;font-size:22px}
- .card h3{font-size:13px}.price{font-size:19px}.card p{font-size:11px}
- .why{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}
- .music-panel{bottom:12px;left:12px}.float-wa{bottom:13px;right:13px}
-}
-@media(max-width:370px){
- .grid{grid-template-columns:1fr}.hero{padding:23px 17px}
- .navlinks{display:none}.brand{font-size:15px}
-}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
-}
+.search{flex:1;min-width:180px;padding:12px;background:#061326;border:1px solid var(--line);border-radius:10px;color:white;outline:none}
+.search:focus{border-color:var(--cyan)}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.filter{padding:10px 12px;background:#07172b;border:1px solid var(--line);border-radius:9px;color:var(--muted);font-size:12px}
+.filter.active{background:var(--cyan);color:#001323;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:38px}
+.card{padding:19px;border:1px solid #12486d;border-radius:16px;background:linear-gradient(145deg,#0a1c32,#050e1e);transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 0 22px #00cfff18}
+.cardtop{display:flex;align-items:center;gap:12px}
+.producticon{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;border:1px solid #008cc0;background:#052744;color:var(--cyan);font-size:24px}
+.tag{font-size:10px;color:var(--cyan);letter-spacing:1px}.card h3{font-size:15px;margin:5px 0}
+.card p{font-size:12px;color:var(--muted);line-height:1.7;min-height:40px}
+.price{font-size:23px;font-weight:900;color:var(--cyan);margin-top:12px}.period{font-size:11px;color:var(--muted);margin-top:4px}
+.order{width:100%;padding:12px;margin-top:16px;background:linear-gradient(90deg,#063d65,#071a31);border:1px solid #087fba;border-radius:9px;color:#e4faff;font-weight:bold;font-size:12px}
+.order:hover{background:linear-gradient(90deg,#00bce9,#087bff);color:#001323}
+.promo{padding:24px;margin:0 0 40px;border:1px solid #0879b9;border-radius:17px;background:radial-gradient(ellipse at 90%,#06477d,transparent 45%),#061326}
+.promo h3{color:var(--cyan);margin:9px 0}.promo p{color:var(--muted);font-size:13px;line-height:1.7}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:42px}
+.why-item b{display:block;color:var(--cyan);font-size:13px;margin-bottom:8px}.why-item span{font-size:11px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);padding:24px 0;background:#030916}.foot{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}footer small{font-size:11px;color:var(--muted);line-height:1.8}
+.music{position:fixed;z-index:12;bottom:13px;left:12px;display:flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:30px;background:#041122f2}
+.music button{width:34px;height:34px;border:0;border-radius:50%;background:var(--cyan);color:#001323;font-weight:bold}
+.music b{font-size:11px}.music small{display:block;font-size:9px;color:var(--muted);margin-top:3px}
+.wa-float{position:fixed;z-index:12;bottom:15px;right:15px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#08c878;color:#001d14;font-size:23px;box-shadow:0 0 20px #08c87866}
+.modal{display:none;position:fixed;inset:0;z-index:30;background:#000b;backdrop-filter:blur(7px);overflow:auto;padding:18px}
+.modal.show{display:flex;align-items:center;justify-content:center}
+.dialog{width:min(510px,100%);max-height:95vh;overflow:auto;padding:22px;border:1px solid var(--cyan);border-radius:18px;background:linear-gradient(145deg,#0a1d33,#030b18);box-shadow:0 0 40px #00cfff25}
+.dialoghead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.dialoghead h2{font-size:22px;margin:5px 0 15px}.close{border:1px solid var(--line);background:#07172b;color:white;border-radius:8px;padding:7px 11px}
+.summary{padding:13px;border:1px solid var(--line);border-radius:11px;background:#061326;margin:13px 0}
+.summary .total{font-size:25px;color:var(--cyan);font-weight:900;margin-top:7px}
+.method-label{display:flex;align-items:center;gap:10px;padding:13px;border:1px solid var(--line);border-radius:11px;background:#061326;margin:9px 0;cursor:pointer}
+.method-label:has(input:checked){border-color:var(--cyan);box-shadow:0 0 14px #00cfff15}
+.method-label input{accent-color:#00dfff}
+.number{font-weight:bold;color:var(--cyan);font-size:17px;margin:8px 0;word-break:break-word}
+.copy{border:1px solid var(--cyan);border-radius:8px;background:#072641;color:var(--cyan);padding:9px 12px;font-size:12px}
+.upload{display:block;padding:15px;border:1px dashed #1683b0;border-radius:11px;margin:12px 0;color:var(--muted);font-size:12px;line-height:1.7}
+.upload input{display:block;width:100%;margin-top:10px;color:var(--muted)}
+.preview{display:none;width:100%;max-height:220px;object-fit:contain;border-radius:10px;margin:10px 0;border:1px solid var(--line)}
+.notice{font-size:11px;color:var(--muted);line-height:1.7;margin:12px 0}
+.dialog .btn{width:100%;margin-top:8px}
+.admin-choice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.admin-choice .btn{font-size:11px;padding:12px 6px}
+@keyframes orbit{to{rotate:360deg}}
+@media(max-width:760px){.navlinks{gap:10px}.navlinks a{display:none}.hero{padding:26px 21px;min-height:315px}.hero:after{right:-100px;opacity:.4}.stats{gap:7px}.stat{padding:13px 4px}.stat small{font-size:9px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:13px}.producticon{width:41px;height:41px}.card h3{font-size:13px}.price{font-size:19px}.why{grid-template-columns:1fr}.heading h2{font-size:25px}}
+@media(max-width:370px){.grid{grid-template-columns:1fr}.navlinks{display:none}.hero{padding:22px 16px}}
 </style>
 </head>
 <body>
-<div class="topline"></div>
 <header>
-  <nav class="nav">
-    <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
-    <div class="navlinks">
-      <a href="#">Beranda</a>
-      <a href="#katalog">Katalog Bot</a>
-      <a href="#layanan">Layanan</a>
-    </div>
-    <button class="music-small" onclick="toggleMusic()">♫ Musik</button>
-  </nav>
+ <nav class="nav">
+  <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
+  <div class="navlinks"><a href="#">Beranda</a><a href="#katalog">Katalog Bot</a><a href="#layanan">Layanan</a></div>
+  <button class="filter" onclick="toggleMusic()">♫ Musik</button>
+ </nav>
 </header>
 
 <main class="wrap">
-  <section class="hero">
-    <div class="hero-content">
-      <div class="eyebrow">◈ DIGITAL SERVICE • LIXERA STORE</div>
-      <h1>BOT WHATSAPP<br><span>MASA DEPAN.</span></h1>
-      <p>Satu tempat untuk layanan Bot WhatsApp. Pilih paket yang sesuai kebutuhanmu, lihat harga, lalu order langsung melalui WhatsApp admin.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#katalog">Jelajahi Katalog ↗</a>
-        <a class="btn btn-secondary" href="https://wa.me/573122353419" target="_blank" rel="noopener">◉ Hubungi Admin</a>
-      </div>
-    </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="orb"></div><div class="core"><span>⌘</span></div>
-    </div>
-  </section>
+ <section class="hero">
+  <div class="hero-content">
+   <div class="kicker">◈ DIGITAL SERVICE • LIXERA STORE</div>
+   <h1>BOT WHATSAPP<br><span>MASA DEPAN.</span></h1>
+   <p>Pilih paket Bot WhatsApp, lakukan pembayaran, lalu kirim bukti transfer ke admin melalui WhatsApp.</p>
+   <div class="actions"><a class="btn primary" href="#katalog">Jelajahi Katalog ↗</a><a class="btn secondary" href="#pembayaran-info">Metode Pembayaran</a></div>
+  </div>
+ </section>
 
-  <section class="stats">
-    <div class="stat"><b>⚡ Cepat</b><small>Order praktis via WhatsApp</small></div>
-    <div class="stat"><b>◈ 3 Paket</b><small>Pilih layanan sesuai kebutuhan</small></div>
-    <div class="stat"><b>◉ Admin</b><small>Hubungi admin untuk konfirmasi</small></div>
-  </section>
+ <section class="stats">
+  <div class="stat"><b>⚡ Praktis</b><small>Order via WhatsApp</small></div>
+  <div class="stat"><b>◈ 6 Paket</b><small>Pilih sesuai kebutuhan</small></div>
+  <div class="stat"><b>◉ Admin</b><small>Konfirmasi pesanan</small></div>
+ </section>
 
-  <section class="catalog" id="katalog">
-    <div class="section-head">
-      <div>
-        <div class="kicker">◈ PILIH LAYANAN</div>
-        <h2>Katalog Bot WhatsApp</h2>
-        <p>Pilih paket dan tekan order untuk melanjutkan ke WhatsApp.</p>
-      </div>
-    </div>
-    <div class="tools">
-      <input id="search" class="search" type="search" placeholder="Cari paket bot..." aria-label="Cari paket bot">
-      <div class="filters" id="filters">
-        <button class="filter active" data-filter="semua">Semua</button>
-        <button class="filter" data-filter="sewa">Sewa Bot</button>
-        <button class="filter" data-filter="premium">Premium</button>
-        <button class="filter" data-filter="owner">Owner</button>
-      </div>
-    </div>
-    <div class="grid" id="productGrid"></div>
-  </section>
+ <section id="katalog">
+  <div class="heading"><div class="kicker">◈ PILIH LAYANAN</div><h2>Katalog Bot WhatsApp</h2><p>Pilih paket dan lanjut ke pembayaran.</p></div>
+  <div class="tools">
+   <input id="search" class="search" type="search" placeholder="Cari paket bot..." aria-label="Cari paket">
+   <div class="filters" id="filters">
+    <button class="filter active" data-filter="semua">Semua</button>
+    <button class="filter" data-filter="sewa">Sewa Bot</button>
+    <button class="filter" data-filter="premium">Premium</button>
+    <button class="filter" data-filter="owner">Owner</button>
+   </div>
+  </div>
+  <div class="grid" id="productGrid"></div>
+ </section>
 
-  <section class="promo">
-    <div class="kicker">◈ BUTUH BANTUAN?</div>
-    <h3>Bingung memilih paket?</h3>
-    <p>Hubungi admin LIXERA STORE untuk bertanya tentang paket, harga, dan ketersediaan layanan sebelum order.</p>
-    <a class="btn btn-primary" href="https://wa.me/573122353419?text=Halo%20Admin%20LIXERA%20STORE%2C%20saya%20mau%20bertanya%20tentang%20paket%20Bot%20WhatsApp." target="_blank" rel="noopener">Chat Admin WhatsApp ↗</a>
-  </section>
+ <section class="promo" id="pembayaran-info">
+  <div class="kicker">◈ PEMBAYARAN</div><h3>DANA atau GoPay</h3>
+  <p>Nomor tujuan pembayaran: <strong style="color:#00e5ff">083165700636</strong>. Pastikan nama penerima dan nominal benar sebelum mengirim uang.</p>
+  <p>Setelah membayar, unggah screenshot bukti dan teruskan ke WhatsApp admin untuk pemeriksaan manual.</p>
+ </section>
 
-  <section id="layanan">
-    <div class="kicker">◈ KENAPA LIXERA STORE?</div>
-    <h2>Layanan yang simpel.</h2>
-    <div class="why">
-      <div class="why-item"><b>⚡ Proses Praktis</b><span>Pilih paket lalu lanjutkan pesanan lewat WhatsApp.</span></div>
-      <div class="why-item"><b>◈ Pilihan Paket</b><span>Tersedia paket sewa, User Premium, dan Owner Bot.</span></div>
-      <div class="why-item"><b>◉ Kontak Admin</b><span>Tanyakan detail paket dan konfirmasi sebelum pembayaran.</span></div>
-    </div>
-  </section>
+ <section id="layanan">
+  <div class="kicker">◈ LAYANAN LIXERA</div><h2>Order lebih praktis.</h2>
+  <div class="why">
+   <div class="why-item"><b>⚡ Pilih Paket</b><span>Harga dan durasi tampil sebelum order.</span></div>
+   <div class="why-item"><b>◈ Pilih Pembayaran</b><span>Pilih DANA atau GoPay.</span></div>
+   <div class="why-item"><b>◉ Konfirmasi Admin</b><span>Admin memeriksa bukti pembayaran secara manual.</span></div>
+  </div>
+ </section>
 </main>
 
-<footer>
-  <div class="wrap foot">
-    <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
-    <small>© 2026 <strong>LIXERA STORE</strong><br>Top Up • Bot • APK • Joki • Website</small>
-    <a class="btn btn-secondary" href="https://wa.me/573122353419" target="_blank" rel="noopener">Hubungi Admin ↗</a>
-  </div>
-</footer>
+<footer><div class="wrap foot">
+ <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
+ <small>© 2026 LIXERA STORE<br>Bot WhatsApp • Sewa • Premium • Owner</small>
+ <a class="btn secondary" href="https://wa.me/573123253419" target="_blank" rel="noopener">Hubungi Admin ↗</a>
+</div></footer>
 
-<div class="music-panel">
-  <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Putar atau hentikan musik">▶</button>
-  <div><b id="musicTitle">LIXERA MUSIC</b><small id="musicStatus">Tekan untuk memutar</small></div>
-  <audio id="bgMusic" loop preload="none">
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<div class="music">
+ <button id="musicBtn" onclick="toggleMusic()" aria-label="Putar musik">▶</button>
+ <div><b>LIXERA MUSIC</b><small id="musicStatus">Tekan untuk memutar</small></div>
+ <audio id="bgMusic" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+</div>
+<a class="wa-float" href="https://wa.me/573123253419" target="_blank" rel="noopener" aria-label="WhatsApp admin">◉</a>
+
+<div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+ <div class="dialog">
+  <div class="dialoghead"><div><div class="kicker">◈ CHECKOUT</div><h2 id="payTitle">Pembayaran Pesanan</h2></div><button class="close" onclick="closePayment()" aria-label="Tutup">✕</button></div>
+  <div class="summary">
+   <div class="muted">Paket pilihan</div><strong id="chosenName">-</strong>
+   <div class="muted" id="chosenDuration">-</div>
+   <div class="total" id="chosenPrice">Rp0</div>
+  </div>
+  <div class="muted">1. Pilih metode pembayaran</div>
+  <label class="method-label"><input type="radio" name="paymentMethod" value="DANA" checked><span>🔵 <strong>DANA</strong><br><small class="muted">Transfer ke nomor di bawah</small></span></label>
+  <label class="method-label"><input type="radio" name="paymentMethod" value="GoPay"><span>🟢 <strong>GoPay</strong><br><small class="muted">Transfer ke nomor di bawah</small></span></label>
+  <div class="summary">
+   <div class="muted">Nomor tujuan pembayaran</div>
+   <div class="number" id="paymentNumber">083165700636</div>
+   <button class="copy" onclick="copyNumber()">Salin Nomor</button>
+   <p class="notice">Pastikan nama penerima benar di aplikasi pembayaran. Periksa kembali nominal pesanan sebelum membayar.</p>
+  </div>
+  <div class="muted">2. Unggah screenshot bukti pembayaran</div>
+  <label class="upload">Pilih gambar bukti transfer (JPG, PNG, atau screenshot).
+   <input id="proofFile" type="file" accept="image/*">
+  </label>
+  <img id="preview" class="preview" alt="Pratinjau bukti pembayaran">
+  <p class="notice">Bukti yang dipilih hanya dipratinjau di halaman ini. File belum diunggah ke server. Lanjutkan ke WhatsApp untuk mengirim bukti kepada admin. Jika lampiran otomatis tidak tersedia, lampirkan gambar secara manual di WhatsApp.</p>
+  <button class="btn primary" style="width:100%" onclick="continueToAdmin()">Saya Sudah Bayar — Lanjut WhatsApp ↗</button>
+  <div class="muted" style="margin-top:18px">Pilih admin tujuan</div>
+  <div class="admin-choice">
+   <button class="btn secondary" onclick="sendToAdmin(0)">WhatsApp Admin 1</button>
+   <button class="btn secondary" onclick="sendToAdmin(1)">WhatsApp Admin 2</button>
+  </div>
+ </div>
 </div>
 
-<a class="float-wa" href="https://wa.me/573122353419" target="_blank" rel="noopener" aria-label="Chat WhatsApp">◉</a>
-
 <script>
-const ADMIN_WA = "573122353419";
-
-// Katalog Bot WhatsApp dari daftar paket LIXERA STORE.
-const products = [
-  {
-    id:"sewa-7hari", name:"Sewa Bot WhatsApp", category:"sewa",
-    duration:"7 hari", price:3000, icon:"⌘",
-    description:"Paket sewa bot untuk kebutuhan WhatsApp selama 7 hari."
-  },
-  {
-    id:"sewa-1bulan", name:"Sewa Bot WhatsApp", category:"sewa",
-    duration:"1 bulan", price:10000, icon:"⌘",
-    description:"Paket sewa bot WhatsApp untuk penggunaan selama 1 bulan."
-  },
-  {
-    id:"sewa-2bulan", name:"Sewa Bot WhatsApp", category:"sewa",
-    duration:"2 bulan", price:20000, icon:"⌘",
-    description:"Paket sewa bot WhatsApp untuk penggunaan selama 2 bulan."
-  },
-  {
-    id:"sewa-3bulan", name:"Sewa Bot WhatsApp", category:"sewa",
-    duration:"3 bulan", price:30000, icon:"⌘",
-    description:"Paket sewa bot WhatsApp untuk penggunaan selama 3 bulan."
-  },
-  {
-    id:"user-premium", name:"User Premium Bot", category:"premium",
-    duration:"1 bulan", price:20000, icon:"♛",
-    description:"Paket User Premium Bot. Tanyakan detail fitur kepada admin."
-  },
-  {
-    id:"owner-bot", name:"Owner Bot", category:"owner",
-    duration:"1 bulan", price:50000, icon:"♜",
-    description:"Paket Owner Bot. Konfirmasi detail akses kepada admin."
-  }
+const PAYMENT_NUMBER = "083165700636";
+const ADMINS = [
+ "https://wa.me/573123253419",
+ "https://wa.me/628818238317"
 ];
 
-let activeFilter = "semua";
-const grid = document.getElementById("productGrid");
-const searchInput = document.getElementById("search");
+const products = [
+ {id:"sewa7",name:"Sewa Bot WhatsApp",category:"sewa",duration:"7 hari",price:3000,icon:"⌘",description:"Paket sewa bot untuk penggunaan selama 7 hari."},
+ {id:"sewa1",name:"Sewa Bot WhatsApp",category:"sewa",duration:"1 bulan",price:10000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 1 bulan."},
+ {id:"sewa2",name:"Sewa Bot WhatsApp",category:"sewa",duration:"2 bulan",price:20000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 2 bulan."},
+ {id:"sewa3",name:"Sewa Bot WhatsApp",category:"sewa",duration:"3 bulan",price:30000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 3 bulan."},
+ {id:"premium",name:"User Premium Bot",category:"premium",duration:"1 bulan",price:20000,icon:"♛",description:"Paket User Premium Bot. Konfirmasi detail fitur ke admin."},
+ {id:"owner",name:"Owner Bot",category:"owner",duration:"1 bulan",price:50000,icon:"♜",description:"Paket Owner Bot. Konfirmasi detail akses ke admin."}
+];
 
-function rupiah(value) {
-  return new Intl.NumberFormat("id-ID", {
-    style:"currency", currency:"IDR", maximumFractionDigits:0
-  }).format(value);
+let activeFilter="semua";
+let selectedProduct=null;
+let proofObjectUrl=null;
+const grid=document.getElementById("productGrid");
+const search=document.getElementById("search");
+const modal=document.getElementById("paymentModal");
+const proofFile=document.getElementById("proofFile");
+const preview=document.getElementById("preview");
+
+function money(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n)}
+
+function renderProducts(){
+ const term=search.value.trim().toLowerCase();
+ const list=products.filter(p=>(activeFilter==="semua"||p.category===activeFilter)&&
+ (p.name+" "+p.duration+" "+p.description).toLowerCase().includes(term));
+ if(!list.length){grid.innerHTML='<div class="muted" style="grid-column:1/-1;padding:30px;text-align:center">Paket tidak ditemukan.</div>';return}
+ grid.innerHTML=list.map(p=>`
+ <article class="card">
+  <div class="cardtop"><div class="producticon">${p.icon}</div><div><div class="tag">${p.category==="sewa"?"SEWA BOT":p.category==="premium"?"PREMIUM ACCESS":"OWNER ACCESS"}</div><h3>${p.name}</h3></div></div>
+  <p>${p.description}</p><div class="price">${money(p.price)}</div><div class="period">Per ${p.duration}</div>
+  <button class="order" data-order="${p.id}">Order Sekarang ↗</button>
+ </article>`).join("");
+ grid.querySelectorAll("[data-order]").forEach(btn=>btn.addEventListener("click",()=>openPayment(btn.dataset.order)));
 }
+document.getElementById("filters").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-filter]");if(!btn)return;
+ activeFilter=btn.dataset.filter;
+ document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("active",b===btn));
+ renderProducts();
+});
+search.addEventListener("input",renderProducts);
 
-function renderProducts() {
-  const keyword = searchInput.value.trim().toLowerCase();
-  const filtered = products.filter(p => {
-    const matchesCategory = activeFilter === "semua" || p.category === activeFilter;
-    const matchesSearch = (p.name + " " + p.duration + " " + p.description)
-      .toLowerCase().includes(keyword);
-    return matchesCategory && matchesSearch;
-  });
-
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">Paket tidak ditemukan. Coba kata kunci lain.</div>';
-    return;
-  }
-
-  grid.innerHTML = filtered.map(p => `
-    <article class="card">
-      <div class="card-top">
-        <div class="product-icon">${p.icon}</div>
-        <div>
-          <div class="tag">${p.category === "sewa" ? "SEWA BOT" : p.category === "premium" ? "PREMIUM ACCESS" : "OWNER ACCESS"}</div>
-          <h3>${p.name}</h3>
-        </div>
-      </div>
-      <p>${p.description}</p>
-      <div class="price">${rupiah(p.price)}</div>
-      <div class="period">Per ${p.duration}</div>
-      <button class="order" data-order="${p.id}">◉ Order Sekarang ↗</button>
-    </article>
-  `).join("");
-
-  grid.querySelectorAll("[data-order]").forEach(button => {
-    button.addEventListener("click", () => {
-      const p = products.find(item => item.id === button.dataset.order);
-      if (!p) return;
-      const message = `Halo Admin LIXERA STORE, saya ingin order:\n\nPaket: ${p.name}\nDurasi: ${p.duration}\nHarga: ${rupiah(p.price)}\n\nMohon info cara melanjutkan pesanan.`;
-      window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
-    });
-  });
+function openPayment(id){
+ selectedProduct=products.find(p=>p.id===id);
+ if(!selectedProduct)return;
+ document.getElementById("chosenName").textContent=selectedProduct.name;
+ document.getElementById("chosenDuration").textContent="Durasi: "+selectedProduct.duration;
+ document.getElementById("chosenPrice").textContent=money(selectedProduct.price);
+ proofFile.value="";
+ preview.removeAttribute("src");preview.style.display="none";
+ modal.classList.add("show");document.body.style.overflow="hidden";
 }
+function closePayment(){modal.classList.remove("show");document.body.style.overflow=""}
+modal.addEventListener("click",e=>{if(e.target===modal)closePayment()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePayment()});
 
-document.getElementById("filters").addEventListener("click", event => {
-  const button = event.target.closest("[data-filter]");
-  if (!button) return;
-  activeFilter = button.dataset.filter;
-  document.querySelectorAll(".filter").forEach(item => {
-    item.classList.toggle("active", item === button);
-  });
-  renderProducts();
+proofFile.addEventListener("change",()=>{
+ if(proofObjectUrl){URL.revokeObjectURL(proofObjectUrl);proofObjectUrl=null}
+ const file=proofFile.files&&proofFile.files[0];
+ if(!file){preview.style.display="none";return}
+ if(!file.type.startsWith("image/")){alert("Pilih file gambar seperti JPG atau PNG.");proofFile.value="";return}
+ if(file.size>10*1024*1024){alert("Ukuran gambar maksimal 10 MB.");proofFile.value="";return}
+ proofObjectUrl=URL.createObjectURL(file);
+ preview.src=proofObjectUrl;preview.style.display="block";
 });
 
-searchInput.addEventListener("input", renderProducts);
-renderProducts();
-
-// Musik: letakkan file musik bernama music.mp3 di folder yang sama
-// dengan index.html. Browser biasanya memerlukan klik pengguna
-// sebelum audio dapat diputar.
-const audio = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-const musicStatus = document.getElementById("musicStatus");
-
-async function toggleMusic() {
-  if (!audio.paused) {
-    audio.pause();
-    musicBtn.textContent = "▶";
-    musicStatus.textContent = "Musik dijeda";
-    return;
-  }
-  try {
-    await audio.play();
-    musicBtn.textContent = "Ⅱ";
-    musicStatus.textContent = "Sedang diputar";
-  } catch (error) {
-    musicStatus.textContent = "Tambahkan file music.mp3";
-    alert("Musik belum tersedia. Upload file MP3 bernama music.mp3 ke folder yang sama dengan index.html, lalu deploy ulang.");
-  }
+async function copyNumber(){
+ try{await navigator.clipboard.writeText(PAYMENT_NUMBER);alert("Nomor pembayaran berhasil disalin.")}
+ catch(e){prompt("Salin nomor pembayaran ini:",PAYMENT_NUMBER)}
 }
 
-audio.addEventListener("ended", () => {
-  musicBtn.textContent = "▶";
-  musicStatus.textContent = "Tekan untuk memutar";
-});
-</script>
-</body>
-</html>
+function buildMessage(){
+ const method=document.querySelector('input[name="paymentMethod"]:checked').value;
+ const p=selectedProduct;
+ return `Halo Admin LIXERA STORE, saya ingin konfirmasi pembayaran pesanan.\n\nPaket: ${p.name}\nDurasi: ${p.duration}\nTotal: ${money(p.price)}\nMetode pembayaran: ${method}\nNomor tujuan: ${PAYMENT_NUMBER}\nBukti pembayaran: ${proofFile.files&&proofFile.files[0]?"Saya sudah memilih screenshot bukti transfer untuk dikirim bersama pesan ini, jika lampiran didukung.":"Belum terlampir; saya akan mengirim bukti secara manual."}\n\nMohon periksa pembayaran saya.`;
+}
 
+async function sendToAdmin(index){
+ if(!selectedProduct)return;
+ const url=ADMINS[index];
+ const message=buildMessage();
+ const file=proofFile.files&&proofFile.files[0];
+
+ // Coba berbagi file langsung jika browser mendukung Web Share API.
+ if(file && navigator.canShare && navigator.share && navigator.canShare({files:[file]})){
+  try{
+   await navigator.share({title:"Bukti Pembayaran LIXERA STORE",text:message,files:[file]});
+   return;
+  }catch(err){
+   if(err&&err.name==="AbortError")return;
+  }
+ }
+ // Fallback: buka chat WhatsApp. Lampiran perlu dipilih manual.
+ const waUrl=url+"?text="+encodeURIComponent(message);
+ window.open(waUrl,"_blank","noopener");
+ if(file){
+  alert("WhatsApp sudah dibuka. Jika screenshot belum terla
