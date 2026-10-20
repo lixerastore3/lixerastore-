@@ -4,482 +4,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b18">
-<meta name="description" content="LIXERA STORE — Top up game, bot WhatsApp, APK premium, joki rank dan layanan digital.">
-<title>LIXERA STORE — Ocean Neon Digital Store</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<meta name="theme-color" content="#030916">
+<title>LIXERA STORE — WhatsApp Bot</title>
+<meta name="description" content="LIXERA STORE menyediakan sewa bot WhatsApp, User Premium, dan Owner Bot.">
 <style>
 :root {
-  --bg:#050b18;
-  --panel:#0b1629;
-  --panel2:#0d2037;
-  --cyan:#36eaff;
-  --blue:#168bff;
-  --text:#edfaff;
-  --muted:#91a8c1;
-  --line:rgba(79,205,255,.16);
-  --glow:0 0 28px rgba(35,199,255,.18);
+  --bg:#030916;
+  --panel:#07172b;
+  --cyan:#00e5ff;
+  --blue:#087bff;
+  --text:#eefaff;
+  --muted:#91aec7;
+  --line:rgba(0,213,255,.25);
 }
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  background:
-    radial-gradient(ellipse at 10% 0%,rgba(0,111,255,.15),transparent 38%),
-    radial-gradient(ellipse at 90% 32%,rgba(0,229,255,.07),transparent 35%),
-    var(--bg);
-  color:var(--text);
-  font-family:Poppins,Arial,sans-serif;
-  overflow-x:hidden;
+  margin:0;background:
+  radial-gradient(ellipse at 15% 10%,#06284a 0,transparent 36%),
+  radial-gradient(ellipse at 90% 35%,#071e40 0,transparent 35%),var(--bg);
+  color:var(--text);font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden
 }
-body::before{
+body:before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-  background-image:linear-gradient(rgba(55,176,255,.025) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(55,176,255,.025) 1px,transparent 1px);
-  background-size:42px 42px;
-  mask-image:linear-gradient(to bottom,black,transparent 85%);
+  background-image:linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);
+  background-size:34px 34px
 }
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 button{cursor:pointer}
-.container{width:min(1160px,92%);margin:auto}
-.neon{color:var(--cyan);text-shadow:0 0 18px rgba(54,234,255,.45)}
-.orbitron{font-family:Orbitron,sans-serif}
-.eyebrow{
-  color:var(--cyan);font-size:11px;letter-spacing:3px;
-  font-weight:700;text-transform:uppercase
+.topline{height:3px;background:linear-gradient(90deg,transparent,var(--cyan),#176bff,transparent)}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(3,9,22,.88);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--line)
 }
-.section{padding:74px 0}
-.section-head{margin-bottom:27px}
-.section-head h2{font-size:clamp(25px,4vw,36px);margin:9px 0}
-.section-head p{font-size:13px;color:var(--muted);line-height:1.8}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  border:1px solid rgba(54,234,255,.4);border-radius:12px;
-  padding:12px 18px;font-size:12px;font-weight:700;
-  color:white;background:linear-gradient(120deg,#087be7,#05bed6);
-  box-shadow:0 0 22px rgba(0,176,255,.16);
-  transition:.25s
+.nav{
+  max-width:1120px;margin:auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;gap:15px
 }
-.btn:hover{transform:translateY(-3px);box-shadow:0 0 28px rgba(54,234,255,.35)}
-.btn-outline{background:rgba(8,26,48,.72);border-color:var(--line)}
-.btn-outline:hover{border-color:var(--cyan)}
-.tag{
-  display:inline-flex;align-items:center;gap:7px;
-  border:1px solid var(--line);border-radius:100px;padding:7px 11px;
-  font-size:10px;color:#c7efff;background:rgba(7,25,44,.7)
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;letter-spacing:.5px}
+.logo{
+  width:43px;height:43px;display:grid;place-items:center;border-radius:13px;
+  border:1px solid var(--cyan);color:var(--cyan);font-size:19px;font-weight:900;
+  background:linear-gradient(145deg,#0a3b61,#030916);
+  box-shadow:0 0 18px #00cfff55,inset 0 0 15px #00cfff22
 }
-.dot{height:7px;width:7px;background:#3df5c8;border-radius:50%;box-shadow:0 0 12px #3df5c8}
-
-/* NAVIGATION */
-.nav-wrap{
-  position:sticky;top:0;z-index:50;
-  background:rgba(5,11,24,.84);backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line)
+.brand span{color:var(--cyan)}
+.navlinks{display:flex;align-items:center;gap:20px;color:#b6cce0;font-size:13px}
+.navlinks a:hover{color:var(--cyan)}
+.music-small{
+  border:1px solid var(--line);background:#07172b;color:var(--cyan);
+  border-radius:20px;padding:9px 12px;font-size:12px
 }
-nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:11px}
-.brand-logo{
-  width:43px;height:43px;border-radius:13px;
-  display:grid;place-items:center;
-  font:800 18px Orbitron,sans-serif;color:white;
-  background:linear-gradient(140deg,#0877e8,#07152d 68%);
-  border:1px solid rgba(54,234,255,.6);
-  box-shadow:0 0 22px rgba(0,180,255,.23);
-  position:relative;overflow:hidden
-}
-.brand-logo:after{
-  content:"";position:absolute;width:70px;height:2px;background:var(--cyan);
-  transform:rotate(-45deg);opacity:.5
-}
-.brand-name{font:800 15px Orbitron,sans-serif;letter-spacing:1px}
-.brand-sub{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px}
-.nav-links{display:flex;align-items:center;gap:24px;font-size:11px;color:#b6c8dd}
-.nav-links a:hover{color:var(--cyan)}
-.menu-btn{display:none;background:none;color:white;border:1px solid var(--line);padding:8px 11px;border-radius:9px}
-
-/* HERO */
-.hero{padding:65px 0 50px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px}
-.hero-copy{position:relative;z-index:2}
-.hero-copy h1{
-  font:800 clamp(37px,5.5vw,66px)/1.12 Orbitron,sans-serif;
-  letter-spacing:-2px;margin:20px 0
-}
-.hero-copy h1 span{
-  display:block;color:var(--cyan);
-  text-shadow:0 0 35px rgba(0,206,255,.3)
-}
-.hero-copy p{color:#9bb2ca;max-width:510px;font-size:13px;line-height:2}
-.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}
-.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}
-.hero-art{
-  height:410px;position:relative;overflow:hidden;border-radius:26px;
-  border:1px solid rgba(57,213,255,.22);
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+.hero{
+  position:relative;overflow:hidden;margin:27px auto 22px;min-height:330px;
+  border:1px solid #0879b9;border-radius:25px;
   background:
-    radial-gradient(ellipse at 70% 40%,rgba(0,178,255,.24),transparent 38%),
-    radial-gradient(ellipse at 45% 100%,rgba(0,77,255,.25),transparent 55%),
-    linear-gradient(145deg,#102b48,#071020 70%);
-  box-shadow:var(--glow),inset 0 0 60px rgba(0,144,255,.08)
+  radial-gradient(ellipse at 75% 42%,#075aa7 0,transparent 34%),
+  radial-gradient(ellipse at 95% 0%,#063f72 0,transparent 45%),
+  linear-gradient(120deg,#071326,#04152c 60%,#061c3b);
+  box-shadow:0 0 35px #007fff16,inset 0 0 40px #008dff0d;
+  display:flex;align-items:center;padding:38px
 }
-.hero-art:before{
-  content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(125deg,transparent 0 37px,rgba(52,216,255,.07) 38px 39px,transparent 40px 75px);
-  animation:water 16s linear infinite
+.hero:before{
+  content:"";position:absolute;right:-35px;top:-70px;width:390px;height:390px;
+  border:1px solid #00d9ff55;border-radius:50%;
+  box-shadow:0 0 0 25px #00cfff08,0 0 0 55px #00cfff06,0 0 50px #008cff20;
+  animation:orbit 18s linear infinite
 }
-.hero-art:after{
-  content:"";position:absolute;width:320px;height:320px;border:1px solid rgba(54,234,255,.19);
-  border-radius:50%;right:-50px;top:40px;
-  box-shadow:0 0 0 24px rgba(54,234,255,.025),0 0 0 50px rgba(54,234,255,.02);
-  animation:orbit 22s linear infinite
-}
-.art-orb{
-  position:absolute;width:190px;height:190px;right:20%;top:24%;
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 28%,#8af7ff,#0878d8 27%,#06162d 68%);
-  box-shadow:0 0 40px rgba(0,191,255,.45),inset -15px -15px 40px #020817;
+.hero:after{
+  content:"";position:absolute;right:45px;top:52px;width:210px;height:210px;
+  border:1px solid #00d9ff66;border-radius:35%;
+  transform:rotate(35deg);box-shadow:0 0 28px #00cfff24,inset 0 0 30px #007cff18;
   animation:float 5s ease-in-out infinite
 }
-.art-orb:after{
-  content:"";position:absolute;inset:-20px;border:2px solid rgba(55,234,255,.5);
-  border-radius:50%;transform:rotateX(65deg) rotate(-20deg);
-  box-shadow:0 0 20px rgba(54,234,255,.22)
+.hero-content{position:relative;z-index:2;max-width:570px}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--cyan);font-weight:bold}
+h1{font-size:clamp(32px,5vw,53px);line-height:1.08;margin:17px 0}
+h1 span{color:var(--cyan);text-shadow:0 0 25px #00d9ff66}
+.hero p{max-width:490px;color:#b2cce0;line-height:1.8;font-size:14px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:23px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 18px;border-radius:12px;border:1px solid var(--cyan);
+  font-size:13px;font-weight:bold;transition:.25s
 }
-.art-character{
-  position:absolute;z-index:2;right:10%;top:9%;
-  font-size:100px;filter:drop-shadow(0 0 22px rgba(48,221,255,.65));
-  opacity:.92;animation:float 6s ease-in-out infinite
+.btn-primary{background:linear-gradient(100deg,#00bde9,#087bff);color:#001323;
+  box-shadow:0 0 22px #00cfff38}
+.btn-secondary{background:#07182c;color:var(--cyan)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 26px #00cfff65}
+.hero-art{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:270px;height:250px;display:grid;place-items:center;z-index:1
 }
-.art-caption{
-  position:absolute;left:23px;bottom:22px;z-index:3;
-  padding:15px 17px;background:rgba(4,15,31,.78);
-  backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px
+.core{
+  width:155px;height:155px;border-radius:36px;transform:rotate(45deg);
+  display:grid;place-items:center;border:2px solid #00dfff;
+  background:linear-gradient(135deg,#0b5a8a,#06142c 65%);
+  box-shadow:0 0 35px #00dfff66,inset 0 0 35px #007bff40;
+  animation:float 4s ease-in-out infinite
 }
-.art-caption strong{display:block;font:700 12px Orbitron,sans-serif}
-.art-caption span{font-size:10px;color:var(--muted);display:block;margin-top:7px}
-.art-chip{
-  position:absolute;z-index:3;right:17px;bottom:25px;
-  font-size:10px;padding:10px 12px;border-radius:10px;
-  background:rgba(0,133,207,.15);border:1px solid rgba(54,234,255,.3)
-}
-.scanline{
-  position:absolute;z-index:1;left:0;right:0;height:2px;top:10%;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  box-shadow:0 0 18px var(--cyan);opacity:.5;animation:scan 6s ease-in-out infinite
-}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.core span{transform:rotate(-45deg);font-size:63px;filter:drop-shadow(0 0 15px #00cfff)}
+.orb{position:absolute;width:220px;height:220px;border:1px dashed #00dfff77;border-radius:50%;animation:orbit 16s linear infinite}
+.orb:before,.orb:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 20px var(--cyan)}
+.orb:before{top:20px;left:28px}.orb:after{right:10px;bottom:45px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0 48px}
 .stat{
-  border:1px solid var(--line);border-radius:15px;padding:17px;
-  background:linear-gradient(135deg,rgba(15,39,65,.8),rgba(6,17,33,.8))
+  padding:17px;border:1px solid var(--line);border-radius:14px;
+  background:linear-gradient(120deg,#07192c,#061123);text-align:center
 }
-.stat strong{display:block;font:700 19px Orbitron,sans-serif;color:var(--cyan)}
-.stat span{font-size:10px;color:var(--muted);display:block;margin-top:7px}
-
-/* SERVICE STRIP */
-.service-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.service{
-  display:flex;align-items:center;gap:12px;padding:16px;
-  border:1px solid var(--line);border-radius:14px;background:rgba(10,27,47,.75);
-  transition:.25s
+.stat b{display:block;color:var(--cyan);font-size:19px;margin-bottom:5px}
+.stat small{color:var(--muted);font-size:11px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:18px}
+.kicker{font-size:10px;letter-spacing:2.5px;color:var(--cyan);font-weight:bold}
+h2{font-size:clamp(24px,4vw,33px);margin:9px 0}
+.section-head p{color:var(--muted);font-size:13px;margin:0;line-height:1.6}
+.catalog{padding-bottom:35px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.search{
+  flex:1;min-width:180px;padding:12px 14px;background:#061326;
+  border:1px solid var(--line);border-radius:11px;color:white;outline:none
 }
-.service:hover{border-color:rgba(54,234,255,.5);transform:translateY(-4px);box-shadow:var(--glow)}
-.service-icon{font-size:23px}
-.service strong{font-size:11px;display:block}
-.service small{font-size:10px;color:var(--muted)}
-
-/* CATALOG */
-.catalog-box{
-  padding:24px;border:1px solid var(--line);border-radius:22px;
-  background:linear-gradient(145deg,rgba(12,29,51,.92),rgba(6,15,30,.95));
-  box-shadow:0 15px 55px rgba(0,0,0,.16)
-}
-.catalog-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.search-wrap{position:relative;flex:1;max-width:330px}
-.search-wrap input{
-  width:100%;padding:12px 14px 12px 39px;border-radius:11px;
-  background:#071427;border:1px solid var(--line);color:white;outline:none;font-size:11px
-}
-.search-wrap input:focus{border-color:var(--cyan);box-shadow:0 0 15px rgba(54,234,255,.1)}
-.search-icon{position:absolute;left:13px;top:10px;color:var(--cyan)}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.search:focus{border-color:var(--cyan);box-shadow:0 0 15px #00cfff22}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
 .filter{
-  padding:9px 13px;border:1px solid var(--line);border-radius:9px;
-  color:#a9c1d9;background:#081629;font-size:10px;transition:.2s
+  border:1px solid #164b70;background:#07172a;color:#9ebbd1;
+  border-radius:10px;padding:11px 13px;font-size:12px;transition:.2s
 }
-.filter:hover,.filter.active{
-  color:white;border-color:var(--cyan);
-  background:linear-gradient(120deg,rgba(0,128,255,.28),rgba(0,223,255,.1));
-  box-shadow:0 0 15px rgba(54,234,255,.09)
+.filter.active,.filter:hover{background:#00cbea;color:#001321;border-color:var(--cyan);font-weight:bold;box-shadow:0 0 18px #00dfff30}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{
+  position:relative;overflow:hidden;padding:21px;border-radius:17px;
+  border:1px solid #12486d;background:linear-gradient(145deg,#0a1c32,#050e1e 75%);
+  transition:.3s
 }
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.product{
-  position:relative;overflow:hidden;padding:19px;border:1px solid var(--line);
-  border-radius:16px;background:linear-gradient(145deg,#0d2037,#081323);
-  transition:transform .25s,border-color .25s,box-shadow .25s;
-  animation:appear .45s both
-}
-.product:before{
-  content:"";position:absolute;left:-80%;top:0;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(64,221,255,.06),transparent);
-  transform:skewX(-20deg);transition:.6s
-}
-.product:hover{transform:translateY(-5px);border-color:rgba(54,234,255,.48);box-shadow:0 12px 35px rgba(0,120,255,.12)}
-.product:hover:before{left:130%}
-.product-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card:before{content:"";position:absolute;top:0;left:-100%;width:70%;height:1px;background:var(--cyan);box-shadow:0 0 15px var(--cyan);transition:.5s}
+.card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 10px 30px #00aaff15,0 0 15px #00dfff18}
+.card:hover:before{left:130%}
+.card-top{display:flex;align-items:center;gap:13px;margin-bottom:15px}
 .product-icon{
-  width:43px;height:43px;display:grid;place-items:center;font-size:22px;
-  border-radius:12px;background:rgba(0,159,255,.1);
-  border:1px solid rgba(54,234,255,.17)
+  width:53px;height:53px;flex-shrink:0;display:grid;place-items:center;
+  border-radius:14px;border:1px solid #008cc0;background:#052744;
+  color:var(--cyan);font-size:27px;box-shadow:inset 0 0 18px #00cfff16
 }
-.product-badge{font-size:8px;color:var(--cyan);border:1px solid var(--line);padding:5px 7px;border-radius:6px}
-.product h3{font-size:12px;margin:15px 0 6px;line-height:1.6}
-.product p{font-size:10px;line-height:1.8;color:var(--muted);min-height:35px}
-.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px}
-.price{font:700 14px Orbitron,sans-serif;color:var(--cyan)}
-.price small{display:block;font:400 9px Poppins,sans-serif;color:var(--muted);margin-top:5px}
-.order-btn{
-  border:1px solid rgba(54,234,255,.3);background:rgba(0,148,225,.12);
-  color:#e9fcff;padding:9px 10px;border-radius:9px;font-size:10px;font-weight:700;
-  transition:.2s
+.tag{font-size:10px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase}
+.card h3{font-size:16px;margin:5px 0}
+.card p{font-size:12px;line-height:1.7;color:var(--muted);min-height:39px;margin:10px 0 15px}
+.price{font-size:23px;font-weight:900;color:var(--cyan);margin:13px 0 4px}
+.period{font-size:11px;color:var(--muted)}
+.order{width:100%;margin-top:17px;border:1px solid #087fba;border-radius:10px;padding:12px;background:linear-gradient(90deg,#063d65,#071a31);color:#d9faff;font-size:12px;font-weight:bold}
+.order:hover{background:linear-gradient(90deg,#00bce9,#087bff);color:#001322;box-shadow:0 0 18px #00cfff33}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line);border-radius:14px}
+.promo{
+  position:relative;overflow:hidden;margin:8px 0 45px;padding:25px;
+  border-radius:18px;border:1px solid #0879b9;
+  background:radial-gradient(ellipse at 90% 20%,#06477d,transparent 45%),linear-gradient(100deg,#06182c,#041022)
 }
-.order-btn:hover{background:var(--blue);box-shadow:0 0 15px rgba(0,174,255,.3)}
-.empty{display:none;text-align:center;padding:40px;color:var(--muted);font-size:12px}
-
-/* PAYMENT & STEPS */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.info-card{
-  padding:23px;border:1px solid var(--line);border-radius:18px;
-  background:linear-gradient(145deg,rgba(13,33,55,.8),rgba(7,17,32,.9))
+.promo h3{color:var(--cyan);font-size:21px;margin:0 0 8px}
+.promo p{font-size:13px;color:#adc8dc;line-height:1.7;margin:0 0 15px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:45px}
+.why-item{border:1px solid var(--line);border-radius:13px;padding:16px;background:#061326}
+.why-item b{display:block;color:var(--cyan);font-size:13px;margin-bottom:7px}
+.why-item span{font-size:11px;color:var(--muted);line-height:1.6}
+footer{border-top:1px solid var(--line);background:#030916;padding:25px 0}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot small{font-size:11px;color:var(--muted);line-height:1.8}
+.foot strong{color:var(--cyan)}
+.float-wa{
+  position:fixed;right:17px;bottom:17px;z-index:25;width:54px;height:54px;
+  display:grid;place-items:center;border-radius:50%;font-size:25px;
+  background:#08c878;color:#001e17;box-shadow:0 0 25px #08c87866;
+  animation:pulse 2.4s infinite
 }
-.info-card h3{font-size:15px;margin:12px 0}
-.info-card p{font-size:11px;color:var(--muted);line-height:2}
-.info-symbol{font-size:25px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.step{padding:18px;border:1px solid var(--line);border-radius:14px;background:#09172a}
-.step-number{font:700 21px Orbitron,sans-serif;color:var(--cyan)}
-.step h3{font-size:12px;margin:12px 0 7px}
-.step p{font-size:10px;line-height:1.9;color:var(--muted)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--line);padding:30px 0 90px;background:rgba(3,9,18,.5)}
-.footer-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.footer-copy{font-size:10px;color:var(--muted);line-height:2}
-.footer-links{display:flex;gap:15px;font-size:10px;color:#a9c1d9}
-.footer-links a:hover{color:var(--cyan)}
-.floating-wa{
-  position:fixed;right:20px;bottom:20px;z-index:60;
-  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
-  color:#04120e;background:#35ed9c;font-size:24px;
-  box-shadow:0 0 25px rgba(53,237,156,.35);transition:.25s
+.music-panel{
+  position:fixed;left:14px;bottom:14px;z-index:25;display:flex;align-items:center;gap:9px;
+  padding:9px 12px;border:1px solid var(--line);border-radius:30px;
+  background:rgba(4,17,34,.94);backdrop-filter:blur(10px);box-shadow:0 0 20px #00cfff16
 }
-.floating-wa:hover{transform:scale(1.08)}
-.toast{
-  position:fixed;bottom:87px;right:20px;z-index:70;
-  padding:12px 16px;background:#10243b;border:1px solid var(--line);
-  border-radius:11px;font-size:11px;display:none
-}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
-.reveal.show{opacity:1;transform:translateY(0)}
-
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.music-btn{border:0;border-radius:50%;width:34px;height:34px;background:#00cfea;color:#001522;font-weight:bold}
+.music-panel small{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.music-panel b{font-size:11px}
 @keyframes orbit{to{transform:rotate(360deg)}}
-@keyframes water{to{background-position:180px 240px}}
-@keyframes scan{0%,100%{top:10%;opacity:.15}50%{top:85%;opacity:.7}}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes neonPulse{0%,100%{box-shadow:0 0 8px rgba(54,234,255,.1)}50%{box-shadow:0 0 22px rgba(54,234,255,.22)}}
-
-@media(max-width:850px){
-  .nav-links{gap:13px}
-  .hero-grid{grid-template-columns:1fr}
-  .hero-art{height:320px;max-width:620px;width:100%;margin:auto}
-  .art-character{font-size:80px}
-  .service-strip{grid-template-columns:repeat(2,1fr)}
-  .product-grid{grid-template-columns:repeat(2,1fr)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes pulse{0%,100%{box-shadow:0 0 12px #08c87855}50%{box-shadow:0 0 28px #08c878aa}}
+@media(max-width:760px){
+ .nav{padding:11px 15px}.navlinks{gap:10px}.navlinks a{display:none}
+ .brand{font-size:16px}.logo{width:38px;height:38px}
+ .hero{padding:27px 22px;min-height:350px}
+ .hero-content{max-width:100%}.hero-art{right:-90px;top:34%;opacity:.26;transform:scale(.75)}
+ .hero-content p{max-width:380px}.stats{gap:7px;margin-bottom:40px}
+ .stat{padding:14px 5px}.stat b{font-size:16px}.stat small{font-size:9px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{padding:14px}.card-top{align-items:flex-start;gap:9px}.product-icon{width:42px;height:42px;font-size:22px}
+ .card h3{font-size:13px}.price{font-size:19px}.card p{font-size:11px}
+ .why{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}
+ .music-panel{bottom:12px;left:12px}.float-wa{bottom:13px;right:13px}
 }
-@media(max-width:600px){
-  nav{min-height:65px}
-  .brand-name{font-size:12px}
-  .brand-logo{width:38px;height:38px}
-  .menu-btn{display:block}
-  .nav-links{
-    display:none;position:absolute;top:65px;left:4%;right:4%;
-    flex-direction:column;align-items:stretch;gap:0;padding:8px;
-    background:#091629;border:1px solid var(--line);border-radius:13px
-  }
-  .nav-links.open{display:flex}
-  .nav-links a{padding:13px;border-bottom:1px solid rgba(255,255,255,.04)}
-  .nav-links a:last-child{border:0}
-  .nav-cta{display:none}
-  .hero{padding:42px 0 25px}
-  .hero-copy h1{font-size:clamp(34px,10vw,48px);letter-spacing:-1.5px}
-  .hero-copy p{font-size:12px}
-  .hero-art{height:270px}
-  .art-orb{width:145px;height:145px;right:20%;top:23%}
-  .art-character{font-size:65px;right:8%}
-  .art-caption{left:12px;bottom:12px;padding:11px}
-  .art-chip{right:10px;bottom:12px;font-size:8px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .stat{padding:14px}
-  .stat strong{font-size:16px}
-  .section{padding:52px 0}
-  .service-strip{gap:9px}
-  .service{padding:12px;gap:8px}
-  .service-icon{font-size:20px}
-  .service strong{font-size:10px}
-  .service small{font-size:9px}
-  .catalog-box{padding:14px}
-  .catalog-top{align-items:stretch}
-  .search-wrap{max-width:none;flex-basis:100%}
-  .filters{gap:7px;margin:17px 0}
-  .filter{font-size:9px;padding:8px 10px}
-  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .product{padding:12px;border-radius:13px}
-  .product-icon{width:36px;height:36px;font-size:19px}
-  .product-badge{font-size:7px;padding:4px}
-  .product h3{font-size:10px;margin-top:12px}
-  .product p{font-size:9px;min-height:40px}
-  .product-bottom{align-items:flex-start;flex-direction:column;margin-top:12px}
-  .price{font-size:12px}
-  .order-btn{width:100%;padding:9px 5px}
-  .info-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
-  .footer-row{align-items:flex-start;flex-direction:column}
-  .floating-wa{width:48px;height:48px;right:14px;bottom:14px}
+@media(max-width:370px){
+ .grid{grid-template-columns:1fr}.hero{padding:23px 17px}
+ .navlinks{display:none}.brand{font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+ *,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
 }
 </style>
 </head>
-
 <body>
-
-<header class="nav-wrap">
-  <nav class="container">
-    <a class="brand" href="#home" aria-label="LIXERA STORE Home">
-      <div class="brand-logo">LS</div>
-      <div>
-        <div class="brand-name">LIXERA <span class="neon">STORE</span></div>
-        <div class="brand-sub">DIGITAL SERVICE</div>
-      </div>
-    </a>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
-
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Beranda</a>
+<div class="topline"></div>
+<header>
+  <nav class="nav">
+    <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
+    <div class="navlinks">
+      <a href="#">Beranda</a>
+      <a href="#katalog">Katalog Bot</a>
       <a href="#layanan">Layanan</a>
-      <a href="#katalog">Katalog</a>
-      <a href="#cara-order">Cara Order</a>
     </div>
-
-    <a class="btn nav-cta" href="#katalog">Jelajahi Produk ↗</a>
+    <button class="music-small" onclick="toggleMusic()">♫ Musik</button>
   </nav>
 </header>
 
-<main>
-<section class="hero" id="home">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="tag"><span class="dot"></span> DIGITAL STORE · OCEAN NEON</div>
-
-        <h1>YOUR DIGITAL<br><span>UNIVERSE.</span></h1>
-
-        <p>
-          Satu tempat untuk kebutuhan digital kamu.
-          Mulai dari top up game, bot WhatsApp, APK premium,
-          joki rank, sampai layanan website.
-          Pilih layanan dan hubungi admin untuk melakukan pemesanan.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn" href="#katalog">⚡ Lihat Katalog</a>
-          <a class="btn btn-outline" href="https://wa.me/573122353419" target="_blank" rel="noopener">WhatsApp Admin ↗</a>
-        </div>
-
-        <div class="hero-tags">
-          <span class="tag">◈ Digital Service</span>
-          <span class="tag">◈ Order via WhatsApp</span>
-          <span class="tag">◈ Ocean Neon UI</span>
-        </div>
-      </div>
-
-      <div class="hero-art" aria-label="Ilustrasi teknologi futuristik">
-        <div class="scanline"></div>
-        <div class="art-orb"></div>
-        <div class="art-character" aria-hidden="true">👾</div>
-
-        <div style="position:absolute;top:22px;left:20px;z-index:3">
-          <div class="eyebrow">LIXERA SYSTEM</div>
-          <div style="font:700 11px Orbitron;margin-top:8px;letter-spacing:1px">NEXT DIGITAL ERA</div>
-        </div>
-
-        <div style="position:absolute;left:23px;top:105px;z-index:3;font-size:10px;color:#9cbad5;line-height:2">
-          <div>◈ DIGITAL GOODS</div>
-          <div>◈ GAME SERVICES</div>
-          <div>◈ PREMIUM ACCESS</div>
-        </div>
-
-        <div class="art-caption">
-          <strong>ENTER THE BLUE ZONE</strong>
-          <span>Upgrade your digital experience.</span>
-        </div>
-        <div class="art-chip"><span class="dot" style="display:inline-block;margin-right:6px"></span> SYSTEM ONLINE</div>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">◈ DIGITAL SERVICE • LIXERA STORE</div>
+      <h1>BOT WHATSAPP<br><span>MASA DEPAN.</span></h1>
+      <p>Satu tempat untuk layanan Bot WhatsApp. Pilih paket yang sesuai kebutuhanmu, lihat harga, lalu order langsung melalui WhatsApp admin.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#katalog">Jelajahi Katalog ↗</a>
+        <a class="btn btn-secondary" href="https://wa.me/573122353419" target="_blank" rel="noopener">◉ Hubungi Admin</a>
       </div>
     </div>
-
-    <div class="stats">
-      <div class="stat"><strong>01</strong><span>Digital Store</span></div>
-      <div class="stat"><strong>24/7</strong><span>Pesan melalui WhatsApp</span></div>
-      <div class="stat"><strong>ALL</strong><span>Beragam kategori layanan</span></div>
-      <div class="stat"><strong>LS</strong><span>LIXERA STORE</span></div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="orb"></div><div class="core"><span>⌘</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section reveal" id="layanan">
-  <div class="container">
+  <section class="stats">
+    <div class="stat"><b>⚡ Cepat</b><small>Order praktis via WhatsApp</small></div>
+    <div class="stat"><b>◈ 3 Paket</b><small>Pilih layanan sesuai kebutuhan</small></div>
+    <div class="stat"><b>◉ Admin</b><small>Hubungi admin untuk konfirmasi</small></div>
+  </section>
+
+  <section class="catalog" id="katalog">
     <div class="section-head">
-      <div class="eyebrow">WHAT WE OFFER</div>
-      <h2>Layanan <span class="neon">Digital</span></h2>
-      <p>Pilih kategori layanan yang kamu butuhkan.</p>
+      <div>
+        <div class="kicker">◈ PILIH LAYANAN</div>
+        <h2>Katalog Bot WhatsApp</h2>
+        <p>Pilih paket dan tekan order untuk melanjutkan ke WhatsApp.</p>
+      </div>
     </div>
+    <div class="tools">
+      <input id="search" class="search" type="search" placeholder="Cari paket bot..." aria-label="Cari paket bot">
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="semua">Semua</button>
+        <button class="filter" data-filter="sewa">Sewa Bot</button>
+        <button class="filter" data-filter="premium">Premium</button>
+        <button class="filter" data-filter="owner">Owner</button>
+      </div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </section>
 
-    <div class="service-strip">
-      <a class="service" href="#katalog" data-jump="Top Up Game">
-        <span class="service-icon">🎮</span>
-        <span><strong>Top Up Game</strong><small>Diamond & pass</small></span>
-      </a>
-      <a class="service" href="#katalog" data-jump="Bot WhatsApp">
-        <span class="service-icon">🤖</span>
-        <span><strong>Bot WhatsApp</strong><small>Sewa & premium</small></span>
-      </a>
-      <a class="service" href="#katalog" data-jump="APK Premium">
-        <span class="service-icon">💎</span>
-        <span><strong>APK Premium</strong><small>Aplikasi pilihan</small></span>
-      </a>
-      <a class="service" href="#katalog" data-jump="Joki Rank">
-        <span class="service-icon">⚔️</span>
-        <span><strong>Joki & Website</strong><small>Game & digital</small></span>
-      </a>
+  <section class="promo">
+    <div class="kicker">◈ BUTUH BANTUAN?</div>
+    <h3>Bingung memilih paket?</h3>
+    <p>Hubungi admin LIXERA STORE untuk bertanya tentang paket, harga, dan ketersediaan layanan sebelum order.</p>
+    <a class="btn btn-primary" href="https://wa.me/573122353419?text=Halo%20Admin%20LIXERA%20STORE%2C%20saya%20mau%20bertanya%20tentang%20paket%20Bot%20WhatsApp." target="_blank" rel="noopener">Chat Admin WhatsApp ↗</a>
+  </section>
+
+  <section id="layanan">
+    <div class="kicker">◈ KENAPA LIXERA STORE?</div>
+    <h2>Layanan yang simpel.</h2>
+    <div class="why">
+      <div class="why-item"><b>⚡ Proses Praktis</b><span>Pilih paket lalu lanjutkan pesanan lewat WhatsApp.</span></div>
+      <div class="why-item"><b>◈ Pilihan Paket</b><span>Tersedia paket sewa, User Premium, dan Owner Bot.</span></div>
+      <div class="why-item"><b>◉ Kontak Admin</b><span>Tanyakan detail paket dan konfirmasi sebelum pembayaran.</span></div>
     </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
+    <small>© 2026 <strong>LIXERA STORE</strong><br>Top Up • Bot • APK • Joki • Website</small>
+    <a class="btn btn-secondary" href="https://wa.me/573122353419" target="_blank" rel="noopener">Hubungi Admin ↗</a>
   </div>
-</section>
+</footer>
 
-<section class="section reveal" id="katalog">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">EXPLORE OUR PRODUCTS</div>
-      <h2>Digital <span class="neon">Catalog.</span></h2>
-      <p>Pilih produk, cek harga, lalu tekan tombol order untuk menghubungi admin.</p>
-    </div>
+<div class="music-panel">
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Putar atau hentikan musik">▶</button>
+  <div><b id="musicTitle">LIXERA MUSIC</b><small id="musicStatus">Tekan untuk memutar</small></div>
+  <audio id="bgMusic" loop preload="none">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+</div>
 
-    <div class="catalog-box">
-      <div class="catalog
+<a class="float-wa" href="https://wa.me/573122353419" target="_blank" rel="noopener" aria-label="Chat WhatsApp">◉</a>
+
+<script>
+const ADMIN_WA = "573122353419";
+
+// Katalog Bot WhatsApp dari daftar paket LIXERA STORE.
+const products = [
+  {
+    id:"sewa-7hari", name:"Sewa Bot WhatsApp", category:"sewa",
+    duration:"7 hari", price:3000, icon:"⌘",
+    description:"Paket sewa bot untuk kebutuhan WhatsApp selama 7 hari."
+  },
+  {
+    id:"sewa-1bulan", name:"Sewa Bot WhatsApp", category:"sewa",
+    duration:"1 bulan", price:10000, icon:"⌘",
+    description:"Paket sewa bot WhatsApp untuk penggunaan selama 1 bulan."
+  },
+  {
+    id:"sewa-2bulan", name:"Sewa Bot WhatsApp", category:"sewa",
+    duration:"2 bulan", price:20000, icon:"⌘",
+    description:"Paket sewa bot WhatsApp untuk penggunaan selama 2 bulan."
+  },
+  {
+    id:"sewa-3bulan", name:"Sewa Bot WhatsApp", category:"sewa",
+    duration:"3 bulan", price:30000, icon:"⌘",
+    description:"Paket sewa bot WhatsApp untuk penggunaan selama 3 bulan."
+  },
+  {
+    id:"user-premium", name:"User Premium Bot", category:"premium",
+    duration:"1 bulan", price:20000, icon:"♛",
+    description:"Paket User Premium Bot. Tanyakan detail fitur kepada admin."
+  },
+  {
+    id:"owner-bot", name:"Owner Bot", category:"owner",
+    duration:"1 bulan", price:50000, icon:"♜",
+    description:"Paket Owner Bot. Konfirmasi detail akses kepada admin."
+  }
+];
+
+let activeFilter = "semua";
+const grid = document.getElementById("productGrid");
+const searchInput = document.getElementById("search");
+
+function rupiah(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style:"currency", currency:"IDR", maximumFractionDigits:0
+  }).format(value);
+}
+
+function renderProducts() {
+  const keyword = searchInput.value.trim().toLowerCase();
+  const filtered = products.filter(p => {
+    const matchesCategory = activeFilter === "semua" || p.category === activeFilter;
+    const matchesSearch = (p.name + " " + p.duration + " " + p.description)
+      .toLowerCase().includes(keyword);
+    return matchesCategory && matchesSearch;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Paket tidak ditemukan. Coba kata kunci lain.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <article class="card">
+      <div class="card-top">
+        <div class="product-icon">${p.icon}</div>
+        <div>
+          <div class="tag">${p.category === "sewa" ? "SEWA BOT" : p.category === "premium" ? "PREMIUM ACCESS" : "OWNER ACCESS"}</div>
+          <h3>${p.name}</h3>
+        </div>
+      </div>
+      <p>${p.description}</p>
+      <div class="price">${rupiah(p.price)}</div>
+      <div class="period">Per ${p.duration}</div>
+      <button class="order" data-order="${p.id}">◉ Order Sekarang ↗</button>
+    </article>
+  `).join("");
+
+  grid.querySelectorAll("[data-order]").forEach(button => {
+    button.addEventListener("click", () => {
+      const p = products.find(item => item.id === button.dataset.order);
+      if (!p) return;
+      const message = `Halo Admin LIXERA STORE, saya ingin order:\n\nPaket: ${p.name}\nDurasi: ${p.duration}\nHarga: ${rupiah(p.price)}\n\nMohon info cara melanjutkan pesanan.`;
+      window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    });
+  });
+}
+
+document.getElementById("filters").addEventListener("click", event => {
+  const button = event.target.closest("[data-filter]");
+  if (!button) return;
+  activeFilter = button.dataset.filter;
+  document.querySelectorAll(".filter").forEach(item => {
+    item.classList.toggle("active", item === button);
+  });
+  renderProducts();
+});
+
+searchInput.addEventListener("input", renderProducts);
+renderProducts();
+
+// Musik: letakkan file musik bernama music.mp3 di folder yang sama
+// dengan index.html. Browser biasanya memerlukan klik pengguna
+// sebelum audio dapat diputar.
+const audio = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+const musicStatus = document.getElementById("musicStatus");
+
+async function toggleMusic() {
+  if (!audio.paused) {
+    audio.pause();
+    musicBtn.textContent = "▶";
+    musicStatus.textContent = "Musik dijeda";
+    return;
+  }
+  try {
+    await audio.play();
+    musicBtn.textContent = "Ⅱ";
+    musicStatus.textContent = "Sedang diputar";
+  } catch (error) {
+    musicStatus.textContent = "Tambahkan file music.mp3";
+    alert("Musik belum tersedia. Upload file MP3 bernama music.mp3 ke folder yang sama dengan index.html, lalu deploy ulang.");
+  }
+}
+
+audio.addEventListener("ended", () => {
+  musicBtn.textContent = "▶";
+  musicStatus.textContent = "Tekan untuk memutar";
+});
+</script>
+</body>
+</html>
+
