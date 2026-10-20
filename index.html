@@ -3,281 +3,475 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#030916">
-<title>LIXERA STORE | WhatsApp Bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030b19">
+<title>LIXERA STORE | Bot WhatsApp</title>
+
 <style>
-:root{--bg:#030916;--panel:#0a2038;--cyan:#00e5ff;--blue:#087bff;--text:#effaff;--muted:#9bb5cb;--line:#155071}
+:root {
+  --bg:#030916;
+  --panel:#071629;
+  --panel2:#0a2038;
+  --cyan:#00e5ff;
+  --blue:#168cff;
+  --text:#effaff;
+  --muted:#9bb4ca;
+  --line:rgba(57,190,255,.28);
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 10% 0%,#083458,transparent 36%),radial-gradient(ellipse at 90% 35%,#071d40,transparent 35%),var(--bg);color:var(--text);font-family:Arial,sans-serif}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(#00cfff08 1px,transparent 1px),linear-gradient(90deg,#00cfff08 1px,transparent 1px);background-size:32px 32px}
-a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
-header{position:sticky;top:0;z-index:10;background:#030916ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.nav,.wrap{width:min(1100px,calc(100% - 30px));margin:auto}
-.nav{padding:12px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
-.logo{width:42px;height:42px;border:1px solid var(--cyan);border-radius:12px;display:grid;place-items:center;color:var(--cyan);background:linear-gradient(140deg,#0c4267,#030916);box-shadow:0 0 18px #00dfff30}
-.brand span{color:var(--cyan)}.navlinks{display:flex;gap:18px;font-size:13px;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--cyan);padding:12px 16px;border-radius:11px;font-weight:bold;font-size:13px;transition:.2s}
-.primary{background:linear-gradient(100deg,#00cce9,#087bff);color:#001323;box-shadow:0 0 18px #00cfff30}
-.secondary{background:#07172b;color:var(--cyan)}
-.btn:hover,button:hover{filter:brightness(1.12)}
-.hero{position:relative;overflow:hidden;margin:25px auto 20px;padding:35px;border:1px solid #0879b9;border-radius:23px;min-height:315px;background:radial-gradient(ellipse at 78% 50%,#075da4,transparent 35%),linear-gradient(120deg,#071326,#04152b 65%,#061c3b);box-shadow:0 0 32px #008cff18}
-.hero:after{content:"";position:absolute;right:5%;top:10%;width:190px;height:190px;border:1px solid #00dfff88;border-radius:40%;transform:rotate(35deg);box-shadow:0 0 0 24px #00cfff08,0 0 0 48px #00cfff06;animation:orbit 20s linear infinite}
-.hero-content{position:relative;z-index:2;max-width:590px}
-.kicker{font-size:10px;letter-spacing:2.5px;color:var(--cyan);font-weight:bold}
-h1{font-size:clamp(32px,5vw,52px);line-height:1.1;margin:17px 0}
-h1 span{color:var(--cyan);text-shadow:0 0 20px #00dfff55}
-.hero p,.muted{color:var(--muted);font-size:13px;line-height:1.8}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 42px}
-.stat,.why-item{padding:16px;border:1px solid var(--line);border-radius:13px;background:#07172b}
-.stat{text-align:center}.stat b{display:block;color:var(--cyan);margin-bottom:5px}.stat small{font-size:11px;color:var(--muted)}
-.heading{margin-bottom:20px}.heading h2{font-size:29px;margin:9px 0}.heading p{font-size:13px;color:var(--muted)}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.search{flex:1;min-width:180px;padding:12px;background:#061326;border:1px solid var(--line);border-radius:10px;color:white;outline:none}
-.search:focus{border-color:var(--cyan)}
-.filters{display:flex;gap:7px;flex-wrap:wrap}
-.filter{padding:10px 12px;background:#07172b;border:1px solid var(--line);border-radius:9px;color:var(--muted);font-size:12px}
-.filter.active{background:var(--cyan);color:#001323;font-weight:bold}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:38px}
-.card{padding:19px;border:1px solid #12486d;border-radius:16px;background:linear-gradient(145deg,#0a1c32,#050e1e);transition:.25s}
-.card:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 0 22px #00cfff18}
-.cardtop{display:flex;align-items:center;gap:12px}
-.producticon{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;border:1px solid #008cc0;background:#052744;color:var(--cyan);font-size:24px}
-.tag{font-size:10px;color:var(--cyan);letter-spacing:1px}.card h3{font-size:15px;margin:5px 0}
-.card p{font-size:12px;color:var(--muted);line-height:1.7;min-height:40px}
-.price{font-size:23px;font-weight:900;color:var(--cyan);margin-top:12px}.period{font-size:11px;color:var(--muted);margin-top:4px}
-.order{width:100%;padding:12px;margin-top:16px;background:linear-gradient(90deg,#063d65,#071a31);border:1px solid #087fba;border-radius:9px;color:#e4faff;font-weight:bold;font-size:12px}
-.order:hover{background:linear-gradient(90deg,#00bce9,#087bff);color:#001323}
-.promo{padding:24px;margin:0 0 40px;border:1px solid #0879b9;border-radius:17px;background:radial-gradient(ellipse at 90%,#06477d,transparent 45%),#061326}
-.promo h3{color:var(--cyan);margin:9px 0}.promo p{color:var(--muted);font-size:13px;line-height:1.7}
-.why{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:42px}
-.why-item b{display:block;color:var(--cyan);font-size:13px;margin-bottom:8px}.why-item span{font-size:11px;color:var(--muted);line-height:1.7}
-footer{border-top:1px solid var(--line);padding:24px 0;background:#030916}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}footer small{font-size:11px;color:var(--muted);line-height:1.8}
-.music{position:fixed;z-index:12;bottom:13px;left:12px;display:flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:30px;background:#041122f2}
-.music button{width:34px;height:34px;border:0;border-radius:50%;background:var(--cyan);color:#001323;font-weight:bold}
-.music b{font-size:11px}.music small{display:block;font-size:9px;color:var(--muted);margin-top:3px}
-.wa-float{position:fixed;z-index:12;bottom:15px;right:15px;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#08c878;color:#001d14;font-size:23px;box-shadow:0 0 20px #08c87866}
-.modal{display:none;position:fixed;inset:0;z-index:30;background:#000b;backdrop-filter:blur(7px);overflow:auto;padding:16px}
-.modal.show{display:flex;align-items:center;justify-content:center}
-.dialog{width:min(510px,100%);max-height:95vh;overflow:auto;padding:22px;border:1px solid #00dfff;border-radius:24px;background:linear-gradient(145deg,#104365,#07304e 55%,#062642);box-shadow:0 0 45px #00cfff2b}
-.dialoghead{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.dialoghead h2{font-size:clamp(20px,5vw,28px);margin:6px 0 8px}
-.close{border:0;background:transparent;color:white;font-size:27px;padding:4px 8px}
-.pay-price{text-align:center;font-size:29px;font-weight:900;color:var(--cyan);margin:5px 0 17px}
-.qrisbox{padding:16px;border:1px solid #ffffff30;border-radius:20px;background:#ffffff0c;text-align:center}
-.qrisimg{display:block;width:min(100%,300px);max-height:390px;object-fit:contain;margin:0 auto 14px;background:white;border-radius:12px}
-.download{display:block;width:100%;padding:17px 10px;border:0;border-radius:13px;background:var(--cyan);color:#003044;font-weight:bold;font-size:17px}
-.qris-label{font-size:22px;font-weight:bold;margin:16px 0 0}
-.method-label{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #ffffff30;border-radius:11px;background:#041a2b55;margin:8px 0;cursor:pointer}
-.method-label:has(input:checked){border-color:var(--cyan);box-shadow:0 0 14px #00cfff15}
-.method-label input{accent-color:#00dfff}
-.number{font-weight:bold;color:var(--cyan);font-size:18px;margin:9px 0;word-break:break-word}
-.copy{border:1px solid var(--cyan);border-radius:8px;background:#072641;color:var(--cyan);padding:9px 12px;font-size:12px}
-.upload{display:block;padding:13px;border:1px dashed #64c8e8;border-radius:11px;margin:12px 0;color:#c6d9e9;font-size:12px;line-height:1.7}
-.upload input{display:block;width:100%;margin-top:10px}
-.preview{display:none;width:100%;max-height:180px;object-fit:contain;border-radius:10px;margin:10px 0;background:#061326}
-.notice{font-size:11px;color:#c0d5e5;line-height:1.7;margin:12px 0}
-.dialog .btn{width:100%;margin-top:8px}
-.admin-choice{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
-.admin-choice .btn{font-size:11px;padding:12px 6px}
-.step-label{font-size:12px;font-weight:bold;margin:16px 0 8px}
-@keyframes orbit{to{rotate:360deg}}
-@media(max-width:760px){.navlinks{gap:10px}.navlinks a{display:none}.hero{padding:26px 21px;min-height:300px}.hero:after{right:-100px;opacity:.4}.stats{gap:7px}.stat{padding:13px 4px}.stat small{font-size:9px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:13px}.producticon{width:41px;height:41px}.card h3{font-size:13px}.price{font-size:19px}.why{grid-template-columns:1fr}.heading h2{font-size:25px}.dialog{padding:16px}.qrisimg{width:min(100%,280px)}}
-@media(max-width:370px){.grid{grid-template-columns:1fr}.navlinks{display:none}.hero{padding:22px 16px}}
+body{
+  margin:0;background:
+  radial-gradient(ellipse at 85% 15%,#09264b 0%,transparent 35%),
+  radial-gradient(ellipse at 10% 55%,#06182d 0%,transparent 40%),
+  var(--bg);
+  color:var(--text);font-family:system-ui,-apple-system,sans-serif;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(0,220,255,.035) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,220,255,.035) 1px,transparent 1px);
+  background-size:38px 38px;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 20px;background:rgba(3,9,22,.93);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(16px);
+}
+.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:850;letter-spacing:1px}
+.logo{
+  width:62px;height:62px;display:grid;place-items:center;
+  color:var(--cyan);font-size:24px;border:1px solid var(--cyan);
+  border-radius:20px;box-shadow:0 0 22px #00d9ff25;
+}
+.brand span span{color:var(--cyan)}
+.music-btn,.secondary,.filter-btn{
+  border:1px solid var(--line);background:#08192d;color:var(--muted);
+  padding:12px 16px;border-radius:15px;
+}
+main{width:min(100% - 32px,1000px);margin:auto}
+.hero{padding:55px 0 30px}
+.eyebrow{
+  color:var(--cyan);font-size:12px;font-weight:800;
+  letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;
+}
+h1{font-size:clamp(38px,8vw,68px);line-height:1.05;margin:0 0 18px;letter-spacing:-2px}
+h1 span{color:var(--cyan);text-shadow:0 0 24px #00d9ff36}
+p{color:var(--muted);line-height:1.8}
+.hero p{max-width:590px;font-size:16px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.primary{
+  border:0;border-radius:15px;padding:14px 20px;
+  color:#00121c;font-weight:850;
+  background:linear-gradient(120deg,var(--cyan),#55aaff);
+  box-shadow:0 0 24px #00d9ff20;
+}
+.secondary{display:inline-flex;align-items:center;justify-content:center}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 45px}
+.step{
+  border:1px solid var(--line);border-radius:18px;padding:17px 10px;
+  text-align:center;color:var(--muted);font-size:13px;background:#061326a8;
+}
+.step b{display:block;color:var(--cyan);font-size:19px;margin-bottom:5px}
+.section{padding:18px 0 45px}
+h2{font-size:clamp(27px,5vw,38px);margin:0 0 10px}
+.section-desc{margin:0 0 25px}
+.search{
+  width:100%;padding:18px 20px;border-radius:17px;
+  border:1px solid var(--line);background:#061326;color:white;
+  outline:none;margin:10px 0 16px;
+}
+.search:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #00d9ff13}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.filter-btn{padding:11px 18px}
+.filter-btn.active{background:var(--cyan);color:#00121c;border-color:var(--cyan);font-weight:800}
+.catalog{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+}
+.product{
+  min-width:0;position:relative;overflow:hidden;
+  border:1px solid var(--line);border-radius:22px;
+  padding:22px;background:linear-gradient(145deg,#0a2038ed,#051020ed);
+  box-shadow:0 12px 35px #00000016;transition:.2s;
+}
+.product:before{
+  content:"";position:absolute;width:100px;height:100px;right:-50px;top:-50px;
+  border-radius:50%;background:#00d9ff15;filter:blur(3px);
+}
+.product:hover{transform:translateY(-3px);border-color:#00d9ff88}
+.product-icon{
+  width:48px;height:48px;border:1px solid var(--line);border-radius:15px;
+  display:grid;place-items:center;font-size:24px;margin-bottom:18px;
+  background:#00d9ff0b;
+}
+.tag{
+  display:inline-block;color:var(--cyan);font-size:10px;font-weight:800;
+  letter-spacing:1.5px;border:1px solid var(--line);
+  border-radius:50px;padding:6px 9px;margin-bottom:12px;
+}
+.product h3{font-size:19px;margin:0 0 7px}
+.product p{font-size:13px;margin:0 0 20px;min-height:44px}
+.price{font-size:25px;font-weight:900;color:var(--cyan);margin-bottom:17px}
+.price small{font-size:12px;color:var(--muted);font-weight:500}
+.order-btn{width:100%;padding:13px 12px;border-radius:13px}
+.empty{grid-column:1/-1;padding:30px;text-align:center;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}
+.payment-info,.service-box{
+  border:1px solid var(--line);border-radius:25px;padding:26px;
+  background:linear-gradient(145deg,#061629e8,#071a30c9);
+  margin:15px 0 50px;
+}
+.payment-info h3{font-size:27px;color:var(--cyan);margin:8px 0}
+.payment-info p{margin:8px 0}
+.highlight{color:var(--cyan);font-weight:800}
+.service-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.service-item{padding:17px;border:1px solid var(--line);border-radius:16px;color:var(--muted);font-size:13px}
+.service-item b{display:block;color:var(--text);margin-bottom:6px}
+footer{border-top:1px solid var(--line);text-align:center;padding:30px 16px;color:var(--muted);font-size:12px}
+footer b{color:var(--cyan)}
+.music-player{
+  position:fixed;bottom:14px;left:14px;z-index:8;
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border:1px solid var(--line);border-radius:40px;background:#071629ed;
+  box-shadow:0 8px 25px #0005;max-width:calc(100% - 28px);
+}
+.play-circle{
+  width:42px;height:42px;flex-shrink:0;border:0;border-radius:50%;
+  background:var(--cyan);color:#00121c;font-size:18px;
+}
+.music-label b{display:block;font-size:12px}
+.music-label small{color:var(--muted);font-size:10px}
+.whatsapp-float{
+  position:fixed;right:16px;bottom:20px;z-index:8;width:58px;height:58px;
+  display:grid;place-items:center;border-radius:50%;background:#08c878;
+  color:#001c12;font-size:25px;box-shadow:0 0 25px #00ff9b30;
+}
+.modal{
+  position:fixed;inset:0;z-index:30;display:none;align-items:center;
+  justify-content:center;padding:15px;background:#000b;backdrop-filter:blur(8px);
+}
+.modal.open{display:flex}
+.modal-card{
+  width:min(100%,480px);max-height:90vh;overflow:auto;
+  border:1px solid var(--line);border-radius:24px;padding:23px;
+  background:#061426;color:var(--text);box-shadow:0 0 50px #00d9ff18;
+}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.modal-top h2{font-size:24px}
+.close{
+  width:38px;height:38px;border:1px solid var(--line);border-radius:12px;
+  background:#0a2038;color:white;font-size:22px;
+}
+.order-summary{padding:16px;border:1px solid var(--line);border-radius:16px;margin:16px 0}
+.order-summary small{color:var(--muted)}
+.order-summary strong{display:block;font-size:22px;color:var(--cyan);margin-top:5px}
+.method-label{display:block;margin:15px 0 8px;font-size:13px;font-weight:800}
+.method-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.method{
+  border:1px solid var(--line);border-radius:12px;padding:11px 4px;
+  background:#08192d;color:var(--muted);font-size:12px;
+}
+.method.active{border-color:var(--cyan);color:var(--cyan);background:#00d9ff10}
+.pay-panel{margin-top:14px;padding:14px;border-radius:15px;background:#0a2038}
+.qris-image{display:block;width:min(100%,260px);max-height:290px;object-fit:contain;margin:12px auto;border-radius:12px;background:white}
+.pay-number{font-size:21px;color:var(--cyan);font-weight:900;word-break:break-word}
+.copy-btn{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#071629;color:white}
+.field{
+  display:block;width:100%;padding:13px;border:1px solid var(--line);
+  border-radius:12px;background:#030d1b;color:white;margin-top:8px;
+}
+.upload{font-size:12px;color:var(--muted)}
+.preview{display:none;max-width:100%;max-height:220px;object-fit:contain;margin:12px auto;border-radius:12px}
+.notice{font-size:12px;line-height:1.7}
+.modal-actions{display:grid;gap:10px;margin-top:17px}
+@media(max-width:600px){
+  header{padding:13px 16px}
+  .brand{font-size:17px;gap:9px}
+  .logo{width:54px;height:54px;border-radius:17px}
+  .music-btn{padding:11px;font-size:13px}
+  main{width:calc(100% - 32px)}
+  .hero{padding-top:40px}
+  .steps{gap:7px}
+  .step{font-size:11px;padding:13px 5px}
+  .catalog{grid-template-columns:1fr}
+  .product{padding:20px}
+  .service-list{grid-template-columns:1fr}
+  .payment-info,.service-box{padding:21px}
+  .music-label small{display:none}
+}
 </style>
 </head>
+
 <body>
 <header>
- <nav class="nav">
-  <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
-  <div class="navlinks"><a href="#">Beranda</a><a href="#katalog">Katalog Bot</a><a href="#layanan">Layanan</a></div>
-  <button class="filter" onclick="toggleMusic()">♫ Musik</button>
- </nav>
+  <a href="#" class="brand" aria-label="Lixera Store">
+    <div class="logo">LS</div>
+    <div>LIXERA <span>STORE</span></div>
+  </a>
+  <button class="music-btn" id="musicToggle">♫ Musik</button>
 </header>
 
-<main class="wrap">
- <section class="hero">
-  <div class="hero-content">
-   <div class="kicker">◈ DIGITAL SERVICE • LIXERA STORE</div>
-   <h1>BOT WHATSAPP<br><span>MASA DEPAN.</span></h1>
-   <p>Pilih paket Bot WhatsApp, lakukan pembayaran melalui QRIS, DANA, atau GoPay, lalu kirim bukti pembayaran ke admin.</p>
-   <div class="actions"><a class="btn primary" href="#katalog">Jelajahi Katalog ↗</a><a class="btn secondary" href="#pembayaran-info">Metode Pembayaran</a></div>
-  </div>
- </section>
+<main>
+  <section class="hero">
+    <div class="eyebrow">◇ Digital Service Store</div>
+    <h1>BOT WHATSAPP<br><span>LIXERA STORE.</span></h1>
+    <p>
+      Pilih paket bot sesuai kebutuhanmu. Proses pemesanan praktis,
+      informasi pembayaran jelas, dan konfirmasi dilakukan melalui WhatsApp admin.
+    </p>
+    <div class="hero-actions">
+      <a href="#katalog" class="primary">Lihat Katalog ↘</a>
+      <a href="#pembayaran" class="secondary">Metode Pembayaran</a>
+    </div>
+  </section>
 
- <section class="stats">
-  <div class="stat"><b>⚡ Praktis</b><small>Order via WhatsApp</small></div>
-  <div class="stat"><b>◈ 6 Paket</b><small>Pilih durasi layanan</small></div>
-  <div class="stat"><b>◉ Admin</b><small>Konfirmasi pesanan</small></div>
- </section>
+  <section class="steps" aria-label="Cara pemesanan">
+    <div class="step"><b>01</b>Pilih paket</div>
+    <div class="step"><b>02</b>Bayar sesuai nominal</div>
+    <div class="step"><b>03</b>Konfirmasi WhatsApp</div>
+  </section>
 
- <section id="katalog">
-  <div class="heading"><div class="kicker">◈ PILIH LAYANAN</div><h2>Katalog Bot WhatsApp</h2><p>Pilih paket untuk membuka popup pembayaran.</p></div>
-  <div class="tools">
-   <input id="search" class="search" type="search" placeholder="Cari paket bot..." aria-label="Cari paket">
-   <div class="filters" id="filters">
-    <button class="filter active" data-filter="semua">Semua</button>
-    <button class="filter" data-filter="sewa">Sewa Bot</button>
-    <button class="filter" data-filter="premium">Premium</button>
-    <button class="filter" data-filter="owner">Owner</button>
-   </div>
-  </div>
-  <div class="grid" id="productGrid"></div>
- </section>
+  <section class="section" id="katalog">
+    <div class="eyebrow">◇ Pilih Layanan</div>
+    <h2>Katalog Bot WhatsApp</h2>
+    <p class="section-desc">Pilih paket untuk membuka popup pembayaran.</p>
 
- <section class="promo" id="pembayaran-info">
-  <div class="kicker">◈ METODE PEMBAYARAN</div><h3>QRIS • DANA • GoPay</h3>
-  <p>QRIS LIXERA STORE tersedia di popup pembayaran. Untuk DANA dan GoPay, gunakan nomor <strong style="color:#00e5ff">083165700636</strong>. Pastikan nama penerima dan nominal benar sebelum membayar.</p>
- </section>
+    <input class="search" id="searchInput" type="search"
+      placeholder="Cari paket bot..." aria-label="Cari paket bot">
 
- <section id="layanan">
-  <div class="kicker">◈ LAYANAN LIXERA</div><h2>Order lebih praktis.</h2>
-  <div class="why">
-   <div class="why-item"><b>⚡ Pilih Paket</b><span>Harga dan durasi tampil sebelum order.</span></div>
-   <div class="why-item"><b>◈ Pilih Pembayaran</b><span>QRIS, DANA, atau GoPay.</span></div>
-   <div class="why-item"><b>◉ Konfirmasi Admin</b><span>Admin memeriksa bukti pembayaran secara manual.</span></div>
-  </div>
- </section>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-category="Semua">Semua</button>
+      <button class="filter-btn" data-category="Sewa Bot">Sewa Bot</button>
+      <button class="filter-btn" data-category="Premium">Premium</button>
+      <button class="filter-btn" data-category="Owner">Owner</button>
+    </div>
+
+    <!-- KATALOG DITULIS LANGSUNG DI HTML AGAR TETAP MUNCUL -->
+    <div class="catalog" id="productGrid">
+      <article class="product" data-category="Sewa Bot" data-name="Sewa Bot WhatsApp 7 Hari">
+        <div class="product-icon">⚡</div>
+        <span class="tag">SEWA BOT</span>
+        <h3>Sewa Bot WA — 7 Hari</h3>
+        <p>Akses layanan bot WhatsApp selama 7 hari.</p>
+        <div class="price">Rp3.000 <small>/ 7 hari</small></div>
+        <button class="primary order-btn" data-product="Sewa Bot WA — 7 Hari" data-price="3000">Pilih Paket ↗</button>
+      </article>
+
+      <article class="product" data-category="Sewa Bot" data-name="Sewa Bot WhatsApp 1 Bulan">
+        <div class="product-icon">🤖</div>
+        <span class="tag">SEWA BOT</span>
+        <h3>Sewa Bot WA — 1 Bulan</h3>
+        <p>Paket sewa bot untuk pemakaian selama 1 bulan.</p>
+        <div class="price">Rp10.000 <small>/ bulan</small></div>
+        <button class="primary order-btn" data-product="Sewa Bot WA — 1 Bulan" data-price="10000">Pilih Paket ↗</button>
+      </article>
+
+      <article class="product" data-category="Sewa Bot" data-name="Sewa Bot WhatsApp 2 Bulan">
+        <div class="product-icon">🚀</div>
+        <span class="tag">SEWA BOT</span>
+        <h3>Sewa Bot WA — 2 Bulan</h3>
+        <p>Paket sewa bot selama 2 bulan.</p>
+        <div class="price">Rp20.000 <small>/ 2 bulan</small></div>
+        <button class="primary order-btn" data-product="Sewa Bot WA — 2 Bulan" data-price="20000">Pilih Paket ↗</button>
+      </article>
+
+      <article class="product" data-category="Sewa Bot" data-name="Sewa Bot WhatsApp 3 Bulan">
+        <div class="product-icon">💠</div>
+        <span class="tag">SEWA BOT</span>
+        <h3>Sewa Bot WA — 3 Bulan</h3>
+        <p>Paket sewa bot selama 3 bulan.</p>
+        <div class="price">Rp30.000 <small>/ 3 bulan</small></div>
+        <button class="primary order-btn" data-product="Sewa Bot WA — 3 Bulan" data-price="30000">Pilih Paket ↗</button>
+      </article>
+
+      <article class="product" data-category="Premium" data-name="User Premium Bot 1 Bulan">
+        <div class="product-icon">👑</div>
+        <span class="tag">PREMIUM</span>
+        <h3>User Premium Bot</h3>
+        <p>Akses pengguna premium bot selama 1 bulan.</p>
+        <div class="price">Rp20.000 <small>/ bulan</small></div>
+        <button class="primary order-btn" data-product="User Premium Bot — 1 Bulan" data-price="20000">Pilih Paket ↗</button>
+      </article>
+
+      <article class="product" data-category="Owner" data-name="Owner Bot 1 Bulan">
+        <div class="product-icon">👑</div>
+        <span class="tag">OWNER</span>
+        <h3>Owner Bot</h3>
+        <p>Paket Owner Bot untuk durasi 1 bulan.</p>
+        <div class="price">Rp50.000 <small>/ bulan</small></div>
+        <button class="primary order-btn" data-product="Owner Bot — 1 Bulan" data-price="50000">Pilih Paket ↗</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="pembayaran">
+    <div class="payment-info">
+      <div class="eyebrow">◇ Metode Pembayaran</div>
+      <h3>QRIS · DANA · GoPay</h3>
+      <p>QRIS LIXERA STORE tersedia di popup pembayaran.</p>
+      <p>Untuk DANA dan GoPay, gunakan nomor
+        <span class="highlight">083165700636</span>.
+      </p>
+      <p>Pastikan nama penerima dan nominal benar sebelum membayar.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow">◇ Layanan Lixera</div>
+    <h2>Order lebih praktis.</h2>
+    <p class="section-desc">Ikuti alur pemesanan agar admin dapat memeriksa transaksi kamu.</p>
+    <div class="service-box">
+      <div class="service-list">
+        <div class="service-item"><b>01 · Pilih Paket</b>Tentukan layanan sesuai kebutuhan.</div>
+        <div class="service-item"><b>02 · Lakukan Pembayaran</b>Bayar sesuai metode dan nominal paket.</div>
+        <div class="service-item"><b>03 · Konfirmasi</b>Kirim detail pesanan dan bukti pembayaran ke admin.</div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer><div class="wrap foot">
- <a href="#" class="brand"><div class="logo">LS</div><div>LIXERA <span>STORE</span></div></a>
- <small>© 2026 LIXERA STORE<br>Bot WhatsApp • Sewa • Premium • Owner</small>
- <a class="btn secondary" href="https://wa.me/573123253419" target="_blank" rel="noopener">Hubungi Admin ↗</a>
-</div></footer>
+<footer>
+  <b>LIXERA STORE</b><br>
+  Digital Service · Bot WhatsApp<br>
+  <span>Pesanan diproses setelah diperiksa admin.</span>
+</footer>
 
-<div class="music">
- <button id="musicBtn" onclick="toggleMusic()" aria-label="Putar musik">▶</button>
- <div><b>LIXERA MUSIC</b><small id="musicStatus">Tekan untuk memutar</small></div>
- <audio id="bgMusic" loop preload="none"><source src="music.mp3" type="audio/mpeg"></audio>
+<div class="music-player">
+  <button class="play-circle" id="playMusic" aria-label="Putar musik">▶</button>
+  <div class="music-label"><b>LIXERA MUSIC</b><small>Tekan untuk memutar</small></div>
 </div>
-<a class="wa-float" href="https://wa.me/573123253419" target="_blank" rel="noopener" aria-label="WhatsApp admin">◉</a>
+<a class="whatsapp-float" href="https://wa.me/573123253419" target="_blank" rel="noopener" aria-label="WhatsApp admin">◉</a>
 
-<div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
- <div class="dialog">
-  <div class="dialoghead">
-   <div><div class="kicker">◈ CHECKOUT LIXERA STORE</div><h2 id="payTitle">Pembayaran Pesanan</h2></div>
-   <button class="close" onclick="closePayment()" aria-label="Tutup">×</button>
+<audio id="storeMusic" src="music.mp3" loop preload="none"></audio>
+
+<div class="modal" id="paymentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-top">
+      <h2 id="modalTitle">Pembayaran</h2>
+      <button class="close" id="closeModal" aria-label="Tutup">×</button>
+    </div>
+
+    <div class="order-summary">
+      <small>Paket pilihan kamu</small>
+      <div id="selectedProduct">Belum memilih paket</div>
+      <strong id="selectedPrice">Rp0</strong>
+    </div>
+
+    <label class="method-label">Pilih metode pembayaran</label>
+    <div class="method-options">
+      <button class="method active" data-method="QRIS">QRIS</button>
+      <button class="method" data-method="DANA">DANA</button>
+      <button class="method" data-method="GoPay">GoPay</button>
+    </div>
+
+    <div class="pay-panel" id="payPanel">
+      <div id="payDetails"></div>
+    </div>
+
+    <label class="method-label" for="customerName">Nama pembeli</label>
+    <input class="field" id="customerName" type="text" maxlength="60" placeholder="Masukkan nama kamu">
+
+    <label class="method-label" for="paymentProof">Bukti pembayaran (opsional)</label>
+    <input class="field upload" id="paymentProof" type="file" accept="image/*">
+    <img class="preview" id="proofPreview" alt="Pratinjau bukti pembayaran">
+    <p class="notice">Pilih gambar bukti untuk melihat pratinjau. Gambar tidak otomatis terunggah ke server atau terkirim ke WhatsApp; lampirkan gambarnya secara manual di chat admin.</p>
+
+    <div class="modal-actions">
+      <button class="primary" id="sendOrder">Lanjut Konfirmasi WhatsApp ↗</button>
+      <button class="secondary" id="cancelOrder">Kembali ke Katalog</button>
+    </div>
   </div>
-  <div class="pay-price" id="chosenPrice">Rp0</div>
-
-  <div class="qrisbox" id="qrisPanel">
-   <img class="qrisimg" id="qrisImage" src="qris-lixera.jpg" alt="QRIS LIXERA STORE">
-   <a class="download" href="qris-lixera.jpg" download="QRIS-LIXERA-STORE.jpg">Download QRIS</a>
-   <div class="qris-label">QRIS</div>
-  </div>
-
-  <div class="step-label">1. Pilih metode pembayaran</div>
-  <label class="method-label"><input type="radio" name="paymentMethod" value="QRIS" checked><span>▦ <strong>QRIS LIXERA STORE</strong><br><small class="muted">Scan gambar QRIS di atas</small></span></label>
-  <label class="method-label"><input type="radio" name="paymentMethod" value="DANA"><span>🔵 <strong>DANA</strong><br><small class="muted">Transfer ke nomor di bawah</small></span></label>
-  <label class="method-label"><input type="radio" name="paymentMethod" value="GoPay"><span>🟢 <strong>GoPay</strong><br><small class="muted">Transfer ke nomor di bawah</small></span></label>
-
-  <div class="summary" id="ewalletPanel" style="display:none;padding:13px;border:1px solid #ffffff30;border-radius:12px;background:#041a2b55;margin-top:12px">
-   <div class="muted">Nomor tujuan DANA / GoPay</div>
-   <div class="number">083165700636</div>
-   <button class="copy" onclick="copyNumber()">Salin Nomor</button>
-  </div>
-
-  <div class="step-label">2. Unggah screenshot bukti pembayaran</div>
-  <label class="upload">Pilih gambar bukti transfer (JPG, PNG, atau screenshot).
-   <input id="proofFile" type="file" accept="image/*">
-  </label>
-  <img id="preview" class="preview" alt="Pratinjau bukti pembayaran">
-
-  <p class="notice">Gambar bukti hanya dipratinjau di browser; belum diunggah ke server. Setelah lanjut, WhatsApp akan dibuka. Jika gambar tidak ikut terlampir otomatis, lampirkan screenshot secara manual di chat admin.</p>
-
-  <button class="btn primary" style="width:100%" onclick="continueToAdmin()">Saya Sudah Bayar — Lanjut WhatsApp ↗</button>
-  <div class="step-label">3. Pilih admin tujuan</div>
-  <div class="admin-choice">
-   <button class="btn secondary" onclick="sendToAdmin(0)">WhatsApp Admin 1</button>
-   <button class="btn secondary" onclick="sendToAdmin(1)">WhatsApp Admin 2</button>
-  </div>
- </div>
 </div>
 
 <script>
-const PAYMENT_NUMBER="083165700636";
-const ADMINS=[
- "https://wa.me/573123253419",
- "https://wa.me/628818238317"
-];
-const products=[
- {id:"sewa7",name:"Sewa Bot WhatsApp",category:"sewa",duration:"7 hari",price:3000,icon:"⌘",description:"Paket sewa bot untuk penggunaan selama 7 hari."},
- {id:"sewa1",name:"Sewa Bot WhatsApp",category:"sewa",duration:"1 bulan",price:10000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 1 bulan."},
- {id:"sewa2",name:"Sewa Bot WhatsApp",category:"sewa",duration:"2 bulan",price:20000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 2 bulan."},
- {id:"sewa3",name:"Sewa Bot WhatsApp",category:"sewa",duration:"3 bulan",price:30000,icon:"⌘",description:"Paket sewa bot WhatsApp selama 3 bulan."},
- {id:"premium",name:"User Premium Bot",category:"premium",duration:"1 bulan",price:20000,icon:"♛",description:"Paket User Premium Bot. Konfirmasi detail fitur ke admin."},
- {id:"owner",name:"Owner Bot",category:"owner",duration:"1 bulan",price:50000,icon:"♜",description:"Paket Owner Bot. Konfirmasi detail akses ke admin."}
-];
+(function(){
+  const money = n => new Intl.NumberFormat('id-ID',{
+    style:'currency',currency:'IDR',maximumFractionDigits:0
+  }).format(n);
 
-let activeFilter="semua",selectedProduct=null,proofObjectUrl=null;
-const grid=document.getElementById("productGrid");
-const search=document.getElementById("search");
-const modal=document.getElementById("paymentModal");
-const proofFile=document.getElementById("proofFile");
-const preview=document.getElementById("preview");
-const qrisPanel=document.getElementById("qrisPanel");
-const ewalletPanel=document.getElementById("ewalletPanel");
+  const cards = Array.from(document.querySelectorAll('.product'));
+  const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+  const searchInput = document.getElementById('searchInput');
+  const grid = document.getElementById('productGrid');
+  let activeCategory = 'Semua';
+  let selectedName = '';
+  let selectedPrice = 0;
+  let selectedMethod = 'QRIS';
 
-function money(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n)}
+  function renderCatalog(){
+    const query = searchInput.value.trim().toLowerCase();
+    let count = 0;
+    cards.forEach(card => {
+      const matchesCategory = activeCategory === 'Semua' ||
+        card.dataset.category === activeCategory;
+      const matchesSearch = card.dataset.name.toLowerCase().includes(query);
+      const visible = matchesCategory && matchesSearch;
+      card.hidden = !visible;
+      if(visible) count++;
+    });
+    let empty = document.getElementById('emptyCatalog');
+    if(!count){
+      if(!empty){
+        empty = document.createElement('div');
+        empty.id = 'emptyCatalog';
+        empty.className = 'empty';
+        empty.textContent = 'Paket tidak ditemukan. Coba kata kunci lain.';
+        grid.appendChild(empty);
+      }
+    }else if(empty){
+      empty.remove();
+    }
+  }
 
-function renderProducts(){
- const term=search.value.trim().toLowerCase();
- const list=products.filter(p=>(activeFilter==="semua"||p.category===activeFilter)&&(p.name+" "+p.duration+" "+p.description).toLowerCase().includes(term));
- if(!list.length){grid.innerHTML='<div class="muted" style="grid-column:1/-1;padding:30px;text-align:center">Paket tidak ditemukan.</div>';return}
- grid.innerHTML=list.map(p=>`
- <article class="card">
-  <div class="cardtop"><div class="producticon">${p.icon}</div><div><div class="tag">${p.category==="sewa"?"SEWA BOT":p.category==="premium"?"PREMIUM ACCESS":"OWNER ACCESS"}</div><h3>${p.name}</h3></div></div>
-  <p>${p.description}</p><div class="price">${money(p.price)}</div><div class="period">Per ${p.duration}</div>
-  <button class="order" data-order="${p.id}">Order Sekarang ↗</button>
- </article>`).join("");
- grid.querySelectorAll("[data-order]").forEach(btn=>btn.addEventListener("click",()=>openPayment(btn.dataset.order)));
-}
-document.getElementById("filters").addEventListener("click",e=>{
- const btn=e.target.closest("[data-filter]");if(!btn)return;
- activeFilter=btn.dataset.filter;
- document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("active",b===btn));
- renderProducts();
-});
-search.addEventListener("input",renderProducts);
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      activeCategory = button.dataset.category;
+      filterButtons.forEach(b => b.classList.toggle('active', b === button));
+      renderCatalog();
+    });
+  });
+  searchInput.addEventListener('input', renderCatalog);
 
-function openPayment(id){
- selectedProduct=products.find(p=>p.id===id);if(!selectedProduct)return;
- document.getElementById("chosenPrice").textContent=money(selectedProduct.price);
- proofFile.value="";preview.removeAttribute("src");preview.style.display="none";
- document.querySelector('input[name="paymentMethod"][value="QRIS"]').checked=true;
- updateMethod();
- modal.classList.add("show");document.body.style.overflow="hidden";
-}
-function closePayment(){modal.classList.remove("show");document.body.style.overflow=""}
-modal.addEventListener("click",e=>{if(e.target===modal)closePayment()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closePayment()});
+  const modal = document.getElementById('paymentModal');
+  const payDetails = document.getElementById('payDetails');
+  const proofInput = document.getElementById('paymentProof');
+  const preview = document.getElementById('proofPreview');
 
-function updateMethod(){
- const method=document.querySelector('input[name="paymentMethod"]:checked').value;
- qrisPanel.style.display=method==="QRIS"?"block":"none";
- ewalletPanel.style.display=method==="QRIS"?"none":"block";
-}
-document.querySelectorAll('input[name="paymentMethod"]').forEach(r=>r.addEventListener("change",updateMethod));
+  function showPaymentDetails(){
+    document.querySelectorAll('.method').forEach(button => {
+      button.classList.toggle('active', button.dataset.method === selectedMethod);
+    });
 
-proofFile.addEventListener("change",()=>{
- if(proofObjectUrl){URL.revokeObjectURL(proofObjectUrl);proofObjectUrl=null}
- const file=proofFile.files&&proofFile.files[0];
- if(!file){preview.style.display="none";return}
- if(!file.type.startsWith("image/")){alert("Pilih file gambar JPG atau PNG.");proofFile.value="";return}
- if(file.size>10*1024*1024){alert("Ukuran gambar maksimal 10 MB.");proofFile.value="";return}
- proofObjectUrl=URL.createObjectURL(file);preview.src=proofObjectUrl;preview.style.display="block";
-});
+    if(selectedMethod === 'QRIS'){
+      payDetails.innerHTML = `
+        <b>Scan QRIS LIXERA STORE</b>
+        <img class="qris-image" src="qris-lixera.jpg" alt="QRIS LIXERA STORE"
+          onerror="this.style.display='none';document.getElementById('qrisMissing').style.display='block'">
+        <p id="qrisMissing" class="notice" style="display:none">
+          File QRIS belum ditemukan. Letakkan gambar QRIS dengan nama
+          <b>qris-lixera.jpg</b> di folder yang sama dengan index.html.
+        </p>
+        <p class="notice">Periksa nama penerima dan nominal sebelum membayar.</p>`;
+    }else{
+      payDetails.innerHTML = `
+        <b>Transfer melalui ${selectedMethod}</b>
+        <p class="pay-number">083165700636</p>
+        <button class="copy-btn" type="button" id="copyNumber">Salin Nomor</button>
+        <p class="notice">Pastikan akun tujuan dan nominal benar sebelum mengirim uang.</p>`;
+      document.getElementById('copyNumber').addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText('083165700636');
+          document.getElementById('copyNumber').textContent = 'Nomor Tersalin ✓';
+        }catch(e){
+          window.prompt('Salin nomor pembayaran ini:', '083165700636');
+        }
+      });
+    }
+  }
 
-async function copyNumber(){
- try{await navigator.clipboard.writeText(PAYMENT_NUMBER);alert("Nomor pembayaran berhasil disalin.")}
- catch(e){prompt("Salin nomor pembayaran ini:",PAYMENT_NUMBER)}
-}
-function buildMessage(){
- const method=document.querySelector('input[name="paymentMethod"]:checked').value;
- const p=selectedProduct;
- return `Halo Admin LIXERA STORE, saya ingin konfirmasi pembayaran.\n\nPaket: ${p.name}\nDurasi: ${p.duration}\nTotal: ${money(p.price)}\nMetode pembayaran: $
+  document.querySelectorAll('.order-btn').forEach(button => {
+    button.addEventListene
